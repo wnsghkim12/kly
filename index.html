@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>kly</title>
+  </head>
+  <body>
+
+   
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand/logo -->
+        <a class="navbar-brand" href="./index.html">Service Name</a>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="./myPage.html">myPage 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link 2</a>
+        </li>
+      </ul>
+
+      <!-- 검색메뉴 -->
+      <form class="form-inline" action="index.html" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search">
+          <button type="submit" class="btn btn-success">검색</button>
+        </div>
+      </form>
+
+    </nav>
+        
+    <div class="container">
+        <div class="row">
+          <!-- 좌측 메뉴 -->
+          <div class="col-md-4" id="menuBar">
+
+            <div class="container">
+              <form action="index.html" method="post">
+                <label for="id">아이디</label>
+                <input class="form-control" type="text" name="id" id="id"/>
+                <label for="password">비밀번호</label>
+                <input class="form-control" type="password" name="password" id="password" />
+                  <button class="btn btn-primary" type="submit">로그인</button>
+                  <button class="btn btn-primary" type="submit">회원가입</button>
+              </form>
+            </div>
+            <!-- <div class="container" id="loginMenu"><div>
+            <div class="container" id="myMenu"><div> -->
+            </div>
+
+
+            <!-- 본문 -->
+            <div class="col-md-8" id="contents">
+                <div class="container">
+                  <div class="container" id="categoryList">
+                    <button class="btn" type="button" name="button">LOL</button>
+                    <button class="btn" type="button" name="button">LOL</button>
+                  </div>
+                    <div class="container" id="videoList"></div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+  </body>
+</html>
