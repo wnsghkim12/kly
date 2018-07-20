@@ -44,7 +44,7 @@
 
 
 ### 4. 어떻게 할려고?
-#### 4.1 예상 화면
+#### 4.1 [예상 화면](https://docs.google.com/presentation/d/1MsajyNa_-z8GAXWQbc-WyqYyutcpxnD1711zjPYT2E0/edit?usp=sharing)
 - 예시 1. [fow.tv](http://fow.tv/)
 <img src="./images/ex_fow.PNG" style="width : 700px;" href="http://www.fow.tv" target="_blank"/>
 
