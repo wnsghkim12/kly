@@ -71,6 +71,11 @@ public class MemberDAO {
 			if(rs.next()) {
 				if(rs.getString("MEMBER_PW").equals(mb.getMEMBER_PW())) {
 					System.out.println("로그인 성공");
+					mb.setMEMBER_ID(rs.getString("MEMBER_ID"));
+					mb.setMEMBER_PW(rs.getString("MEMBER_PW"));
+					mb.setMEMBER_EMAIL(rs.getString("MEMBER_ID"));
+					// mb.setMEMBER_CHECKED((rs.getCharacterStream("MEMBER_CHECKED"));
+					mb.setMEMBER_ID(rs.getString("MEMBER_ID"));
 				}
 			} else {
 				mb = null;
