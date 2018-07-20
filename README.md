@@ -45,13 +45,13 @@
 
 ### 4. 어떻게 할려고?
 #### 4.1 예상 화면
-- 예시 1. fow.tv
+- 예시 1. [fow.tv](http://fow.tv/)
 <img src="./images/ex_fow.PNG" style="width : 700px;" href="http://www.fow.tv" target="_blank"/>
 
-- img 유튜브
+- 예시 2. [유튜브](https://www.youtube.com/)
 <img src="./images/ex_ytb.PNG" style="width : 700px;"  />
 
-- img 트게더
+- 예시 3. [트게더](https://tgd.kr/)
 <img src="./images/ex_tgt.PNG" style="width : 700px;"  />
 
 #### 4.2 기술 스택
