@@ -1,5 +1,15 @@
-#KLY
-[TOC]
+#KLY PROJECT
+
+##목차
+- [소개](#소개)
+	- [1.우리는](#1-우리는)
+	- [2.우리가 만드는 것은?](#1-우리가-만드는-것은?)
+	- [3.왜 만드나?](#3-왜-만드나?)
+	- [4. 어떻게 할려고?](#1-어떻게-할려고?)
+		- [4.1 예상 화면](#41-예상-화면)
+		- [4.2 기술 스택](#42-기술-스택)
+		- [4.3 일정](#42-일정)
+
 
 ## 소개
 ### 1. 우리는?
@@ -36,13 +46,13 @@
 ### 4. 어떻게 할려고?
 #### 4.1 예상 화면
 - 예시 1. fow.tv
-<img src="./images/ex_fow.png" style="width : 700px;" href="http://www.fow.tv" target="_blank"/>
+<img src="./images/ex_fow.PNG" style="width : 700px;" href="http://www.fow.tv" target="_blank"/>
 
 - img 유튜브
-<img src="./images/ex_ytb.png" style="width : 700px;"  />
+<img src="./images/ex_ytb.PNG" style="width : 700px;"  />
 
 - img 트게더
-<img src="./images/ex_tgt.png" style="width : 700px;"  />
+<img src="./images/ex_tgt.PNG" style="width : 700px;"  />
 
 #### 4.2 기술 스택
 - Front-end
