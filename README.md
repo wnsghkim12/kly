@@ -63,7 +63,7 @@
 	- java(JSP 2.3/Servlet 3.1)
 - DB
 	- Oracle 11g
-- CM
+- 버전관리
 	- (github / source Tree)
 
 #### 4.3 일정
