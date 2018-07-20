@@ -56,14 +56,13 @@
 
 #### 4.2 기술 스택
 - Front-end
-	- TML5, CSS3
-	- Library : bootstrap 4.1, jQuety
+	- HTML5, CSS3
+	- Library : bootstrap 4.1, jQuery
 		
 - Back-end
 	- java(JSP 2.3/Servlet 3.1)
 - DB
 	- Oracle 11g
-    
 - CM
 	- (github / source Tree)
 
