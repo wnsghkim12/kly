@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDetailAction;
+import action.MemberDropAction;
 import action.MemberJoinAction;
 import action.MemberLoginAction;
 import action.MemberLogoutAction;
@@ -80,6 +81,13 @@ public class MemberController extends HttpServlet {
 			}
 		} else if(command.equals("/memberDetail.kly")) {
 			action = new MemberDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/memberDrop.kly")) {
+			action = new MemberDropAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

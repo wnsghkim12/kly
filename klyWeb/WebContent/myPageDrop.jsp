@@ -57,7 +57,7 @@
                                 <label><h5>아이디</h5></label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" readonly="readonly" value="${loginInfo.getMEMBER_ID()}"/>
+                                <input class="form-control" name="memberID" type="text" readonly="readonly" value="${loginInfo.getMEMBER_ID()}"/>
                            </div>
                         </div>
                         
@@ -66,7 +66,7 @@
                                 <label><h5>현재 비밀번호</h5></label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" />
+                                <input class="form-control" name="memberPW" type="text" />
                            </div>
                         </div>
                         
