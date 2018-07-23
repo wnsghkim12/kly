@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./style.css" type="text/css">
@@ -16,9 +16,12 @@
     
     <script src="./script.js"></script>
     <title>kly</title>
-  </head>
-  <body>
 
+</head>
+
+<body>
+  
+	<!-- 상단바(footer) -->
     <%@include file="./navbarTemplate.jsp" %>
 
 	<!-- 내용 부분 -->
@@ -33,7 +36,7 @@
                         <input type="text" class="form-control" id="search">
                     </div>
                     <div class="col-sm-3">
-                        <button type="submit" class="btn btn-success">검색</button>               
+                        <button type="submit" class="btn btn-success">검색</button>
                     </div>
                 </div>
             </div>
@@ -80,12 +83,12 @@
             </tr>
             
         </table>
-    </div>
-    
-    <!-- 하단바(footer) -->
-    <div class="jumbotron text-center">
-        <p>&copy; 2018 kly</p>
-    </div>
-    
-  </body>
+	</div>
+
+	<!-- 하단바(footer) -->
+	<div class="jumbotron text-center">
+		<p>&copy; 2018 kly</p>
+	</div>
+
+</body>
 </html>

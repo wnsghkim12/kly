@@ -22,7 +22,6 @@ public class MemberController extends HttpServlet {
 
 	public MemberController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

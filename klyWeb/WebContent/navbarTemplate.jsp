@@ -10,6 +10,9 @@
 
 
 <!-- 상단 고정바(navbar) -->
+<%
+
+%>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand/logo -->
         <a href="./index.jsp"><img src="./images/logo.png" style="height: 45px" /></a>

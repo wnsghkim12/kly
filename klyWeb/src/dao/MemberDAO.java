@@ -33,9 +33,13 @@ public class MemberDAO {
 	}
 	
 	public int joinMember(MemberBean mb) {
-		String sql = "INSERT INTO MEMBER (MEMBER_ID, MEMBER_PW, MEMBER_EMAIL) VALUES(?,?,?)";
+		String sql = "INSERT INTO MEMBER (MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_DATE) VALUES(?,?,?, SYSDATE)";
 		int result = 0;
 		
+		System.out.println(":: MemberDAO ::");
+		System.out.println("id :" + mb.getMEMBER_ID());
+		System.out.println("pass :" + mb.getMEMBER_PW());
+		System.out.println("email :" + mb.getMEMBER_EMAIL());
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -47,6 +51,7 @@ public class MemberDAO {
 						
 		} catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("MemberDAO에서의 에러 메세지"+e.getMessage());
 		} finally {
 			try {
 				close(pstmt);

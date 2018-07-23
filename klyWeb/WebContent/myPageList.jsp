@@ -16,16 +16,16 @@
   <body>
   
     <%@include file="./navbarTemplate.jsp" %>
-    
+
     <!-- 내용 부분 -->
     <h2 class="h1 ml-4 mt-4">My Page</h2>
     <div class="row mt-4 mb-4">
-        
+        	
         <div class="col-md-4 col-lg-2">
             <div class="container">
-				<div class="list-group">
-                    <a class="list-group-item active" href="myPage.jsp">정보변경</a>
-                    <a class="list-group-item" href="myPageList.jsp?order=upload">업로드한 게시물</a>
+                <div class="list-group">
+                    <a class="list-group-item" href="myPage.jsp">정보변경</a>
+                    <a class="list-group-item active" href="myPageList.jsp?order=upload">업로드한 게시물</a>
 					<a class="list-group-item" href="myPageList.jsp?order=liked">좋아요 한 게시물</a>
 					<a class="list-group-item" href="myPageList.jsp?order=reply">댓글을 단 게시물</a>
 					<a class="list-group-item" href="myPageDrop.jsp">회원탈퇴</a>
@@ -33,7 +33,7 @@
             </div>
         </div>
         
-        <div class="col-md-7 col-lg-10">
+        <div class="col-md-8 col-lg-10">
             <div class="container">
                 <h2>비밀번호 변경</h2>
                 <form class="form mt-5" action="memberInfoRivision.kly">
