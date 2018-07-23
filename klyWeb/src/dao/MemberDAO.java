@@ -125,7 +125,7 @@ public class MemberDAO {
 					pstmt.setString(1, mb.getMEMBER_ID());
 					System.out.println("pstmt.setString(1, mb.getMEMBER_ID());");
 					
-					pstmt.executeUpdate();
+					result = pstmt.executeUpdate();
 					System.out.println("result = pstmt.executeUpdate();");
 					System.out.println(":: 삭제 결과");
 					System.out.println("result : "+result);
@@ -143,6 +143,42 @@ public class MemberDAO {
 			
 		}
 		return result;
+	}
+
+	public int modifyMember(MemberBean mb, String currentPassword, String changePassword) {
+		String confirm = "SELECT MEMBER_PW FROM MEMBER WHERE MEMBER_ID = ?";
+		String sql = "UPDATE MEMBER SET MEMBER_PW = ? WHERE MEMBER_ID = ?";
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(confirm);
+			pstmt.setString(1, mb.getMEMBER_ID());
+			rs = pstmt.executeQuery();
+
+			// 해당 아이디가 존재
+			if(rs.next()) {
+				System.out.println("아이디가 존재");
+				// 입력 비밀번호가 일치
+				if(rs.getString(1).equals(currentPassword)) {
+					System.out.println("수정 단계");
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, changePassword);
+					pstmt.setString(2, mb.getMEMBER_ID());
+					result = pstmt.executeUpdate();
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				close(pstmt);
+				close(rs);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
+
 	}
 
 }

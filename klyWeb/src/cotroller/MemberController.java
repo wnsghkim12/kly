@@ -15,6 +15,7 @@ import action.MemberDropAction;
 import action.MemberJoinAction;
 import action.MemberLoginAction;
 import action.MemberLogoutAction;
+import action.MemberModifyAction;
 import bean.ActionForward;
 
 @WebServlet("*.kly")
@@ -86,8 +87,15 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}  else if(command.equals("/memberDrop.kly")) {
+		} else if(command.equals("/memberDrop.kly")) {
 			action = new MemberDropAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/memberInfoRivision.kly")) {
+			action = new MemberModifyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
