@@ -40,9 +40,7 @@
             <div class="container">
                 <div class="list-group">
                     <a class="list-group-item" href="myPage.jsp">정보변경</a>
-                    <a class="list-group-item" href="myPageList.jsp?order=upload">업로드한 게시물</a>
-					<a class="list-group-item" href="myPageList.jsp?order=liked">좋아요 한 게시물</a>
-					<a class="list-group-item" href="myPageList.jsp?order=reply">댓글을 단 게시물</a>
+                    <a class="list-group-item" href="myPageList.jsp?order=upload">게시물 관리</a>
 					<a class="list-group-item  active" href="myPageDrop.jsp">회원탈퇴</a>
                 </div>
             </div>
