@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="bean.MemberBean" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	/* 로그인 사용자만 접속 가능 */
+	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+
+	if(loginInfo == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인 하셔야 이용하실 수 있는 서비스 입니다.')");
+		script.println("location.href='index.jsp'");
+		script.println("</script>");
+		script.close();
+	}
+%>
 <!DOCTYPE html>
 <html>
   <head>
