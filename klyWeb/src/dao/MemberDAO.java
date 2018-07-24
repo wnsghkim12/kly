@@ -66,25 +66,27 @@ public class MemberDAO {
 	}
 
 	public MemberBean loginMember(MemberBean mb) {
-		String sql = "SELECT MEMBER_PW FROM MEMBER WHERE MEMBER_ID=?";
+		String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID=?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mb.getMEMBER_ID());
 			rs = pstmt.executeQuery();
 			System.out.println("로그인 시도\n");
-			while(rs.next()) {
-				if(rs.getString(1).equals(mb.getMEMBER_PW())) {
-					System.out.println("로그인 성공");
-					mb.setMEMBER_ID(rs.getString("MEMBER_ID"));
-					mb.setMEMBER_PW(rs.getString("MEMBER_PW"));
-					mb.setMEMBER_EMAIL(rs.getString("MEMBER_ID"));
-					// mb.setMEMBER_CHECKED((rs.getCharacterStream("MEMBER_CHECKED"));
-					mb.setMEMBER_ID(rs.getString("MEMBER_ID"));
-				} else {
-					mb = null;
-				}
+			rs.next();
+			System.out.println("쿼리 결과 존재");
+			if(rs.getString("MEMBER_PW").equals(mb.getMEMBER_PW())) {
+				System.out.println("로그인 성공");
+				mb.setMEMBER_ID(rs.getString(1));
+				mb.setMEMBER_PW(rs.getString(2));
+				mb.setMEMBER_EMAIL(rs.getString(3));
+				mb.setMEMBER_CHECKED(rs.getInt(4));
+				mb.setMEMBER_DATE(rs.getDate(5));
+				mb.setMEMBER_SUSPENED(rs.getInt(6));
+			} else {
+				mb = null;
 			}
+			
 						
 		} catch(Exception e) {
 			e.printStackTrace();
