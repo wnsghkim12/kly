@@ -48,7 +48,7 @@
     <button type="button" class="btn btn-success" style="width:95%;" id="category" onclick="location.herf='boardList.kly?category=취미'">취미</button>
     <button type="button" class="btn btn-success" style="width:95%;" id="category" onclick="location.herf='boardList.kly?category=동물'">동물</button>
     <button type="button" class="btn btn-success" style="width:95%; margin: 5px 5px 80px 5px;" id="category" onclick="location.herf='boardList.kly?category=기타'" >기타</button>
-    <button type="button" class="btn btn-primary" style="width:95%;" id="register" onclick="location='boardwrite.kly'">게시글 등록</button>
+    <button type="button" class="btn btn-primary" style="width:95%;" id="register" onclick="location='boardWrite.jsp'">게시글 등록</button>
     <form action="./boradList.kly" method="post">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Search">

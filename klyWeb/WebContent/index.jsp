@@ -45,7 +45,7 @@
         <table class="table table-hover mt-3">
             <tr>
                 <td colspan="4" style="text-align: center;">
-                    <button class="btn btn-info" type="button" onclick="location.href='./list.html'">전체보기</button>
+                    <button class="btn btn-info" type="button" onclick="location.href='./boardList.kly'">전체보기</button>
                 </td>
                 <td>
                     <select>
