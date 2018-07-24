@@ -14,7 +14,7 @@ import dao.MemberDAO;
 public class BoardWriteService {
 
 	public boolean BoardService(BoardBean boardBean){
-		BoardDAO boardDAO = BoardDAO.getInstense();
+		BoardDAO boardDAO = BoardDAO.getInstance();
 		Connection con = getConnection();
 		boardDAO.setConnection(con);
 			

@@ -51,13 +51,13 @@ public class BoardWriteAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('board action 오류!!')");
+			out.println("alert('board action 오류!!');");
 			out.println("history.back();");
-			out.println("</ script>");
+			out.println("</script>");
 		}else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("index.jsp");
+			forward.setPath("./index.jsp");
 		}
 		return forward;
 	}

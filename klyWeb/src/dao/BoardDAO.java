@@ -1,6 +1,5 @@
 package dao;
 
-import static db.JDBCUtil.close;
 import static db.JDBCUtil.*;
 
 import java.sql.Connection;
@@ -14,7 +13,6 @@ import com.sun.corba.se.pept.transport.EventHandler;
 import com.sun.org.apache.regexp.internal.RE;
 
 import bean.BoardBean;
-import bean.MemberBean;
 
 public class BoardDAO {
 	DataSource ds;
@@ -24,7 +22,7 @@ public class BoardDAO {
 	
 	private static BoardDAO BoardDAO;
 
-	public static BoardDAO getInstense() {
+	public static BoardDAO getInstance() {
 		if(BoardDAO == null) {
 			BoardDAO = new BoardDAO();
 		}
@@ -35,8 +33,148 @@ public class BoardDAO {
 		this.con = con;
 	}
 	
+	public ArrayList<BoardBean> getboardlist() {	
+		String sql = "SELECT * FROM BOARD";
+		ArrayList<BoardBean> boardlist =new ArrayList<BoardBean>();			
+		BoardBean Boardbean = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();					
+			if(rs.next()) {
+				Boardbean = new BoardBean();
+				Boardbean.setMEMBER_ID(rs.getString(1));
+				Boardbean.setBOARD_NUM(rs.getInt(2));
+				Boardbean.setBOARD_SUBJECT(rs.getString(3));
+				Boardbean.setBOARD_DATE(rs.getDate(4));
+				Boardbean.setBOARD_VIDEO_FILE(rs.getString(5));
+				Boardbean.setBOARD_VIDEO_URL(rs.getString(6));
+				Boardbean.setBOARD_READCOUNT(rs.getInt(7));
+				Boardbean.setBOARD_LIKECOUNT(rs.getInt(8));
+				Boardbean.setBOARD_BLIND(rs.getInt(9));
+				Boardbean.setBOARD_TAG(rs.getString(10));
+				Boardbean.setBOARD_CATEGORY(rs.getString(11));
+				boardlist.add(Boardbean);				
+			} while(rs.next()) ;			
+		}catch(Exception e) {
+			System.out.println("list 오류"+e);
+		}finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		return boardlist;
+	}
+
+	public int updatecount(int me) {
+		int updatecount = 0;
+		String sql1 ="UPDATE board SET BOARD_READCOUNT=(BOARD_READCOUNT+1) WHERE BOARD_NUM=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql1);
+			pstmt.setInt(1, me);
+			updatecount = pstmt.executeUpdate();
+			System.out.println("조회수올려짐");
+		} catch(Exception e) {
+			System.out.println("조회수 올리기 오류");
+		} finally {
+			close(pstmt);
+		}
+		return updatecount;
+	}
+
+	public  BoardBean getboard(int me) {
+		String sql = "SELECT * FROM BOARD WHERE BOARD_NUM = ?";
+		BoardBean Boardbean = null;
+		try {
+		
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,me);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Boardbean = new BoardBean();
+				Boardbean.setMEMBER_ID(rs.getString(1));
+				Boardbean.setBOARD_NUM(rs.getInt(2));
+				Boardbean.setBOARD_SUBJECT(rs.getString(3));
+				Boardbean.setBOARD_DATE(rs.getDate(4));
+				Boardbean.setBOARD_VIDEO_FILE(rs.getString(5));
+				Boardbean.setBOARD_VIDEO_URL(rs.getString(6));
+				Boardbean.setBOARD_READCOUNT(rs.getInt(7));
+				Boardbean.setBOARD_LIKECOUNT(rs.getInt(8));
+				Boardbean.setBOARD_BLIND(rs.getInt(9));
+				Boardbean.setBOARD_TAG(rs.getString(10));
+				Boardbean.setBOARD_CATEGORY(rs.getString(11));
+			}
+		} catch(Exception e) {
+			System.out.println("오류");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return Boardbean;
+	}
+	
+	public ArrayList<BoardBean> getLikeList() {	
+		String sql = "SELECT * FROM BOARD ORDER BY BOARD_LIKECOUNT DESC";
+		ArrayList<BoardBean> boardlist =new ArrayList<BoardBean>();			
+				BoardBean Boardbean = null;
+				try {
+					pstmt = con.prepareStatement(sql);
+					rs = pstmt.executeQuery();					
+					if(rs.next()) {
+						Boardbean = new BoardBean();
+						Boardbean.setMEMBER_ID(rs.getString(1));
+						Boardbean.setBOARD_NUM(rs.getInt(2));
+						Boardbean.setBOARD_SUBJECT(rs.getString(3));
+						Boardbean.setBOARD_DATE(rs.getDate(4));
+						Boardbean.setBOARD_VIDEO_FILE(rs.getString(5));
+						Boardbean.setBOARD_VIDEO_URL(rs.getString(6));
+						Boardbean.setBOARD_READCOUNT(rs.getInt(7));
+						Boardbean.setBOARD_LIKECOUNT(rs.getInt(8));
+						Boardbean.setBOARD_BLIND(rs.getInt(9));
+						Boardbean.setBOARD_TAG(rs.getString(10));
+						Boardbean.setBOARD_CATEGORY(rs.getString(11));
+						boardlist.add(Boardbean);				
+					}while(rs.next()) ;			
+			} catch(Exception e) {
+				System.out.println("list 오류"+e);
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+				return boardlist;
+		}
+	public ArrayList<BoardBean> getReadList() {	
+		String sql = "SELECT * FROM BOARD ORDER BY BOARD_READCOUNT DESC";
+		ArrayList<BoardBean> boardlist =new ArrayList<BoardBean>();			
+			BoardBean Boardbean = null;
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();					
+				if(rs.next()) {
+					Boardbean = new BoardBean();
+					Boardbean.setMEMBER_ID(rs.getString(1));
+					Boardbean.setBOARD_NUM(rs.getInt(2));
+					Boardbean.setBOARD_SUBJECT(rs.getString(3));
+					Boardbean.setBOARD_DATE(rs.getDate(4));
+					Boardbean.setBOARD_VIDEO_FILE(rs.getString(5));
+					Boardbean.setBOARD_VIDEO_URL(rs.getString(6));
+					Boardbean.setBOARD_READCOUNT(rs.getInt(7));
+					Boardbean.setBOARD_LIKECOUNT(rs.getInt(8));
+					Boardbean.setBOARD_BLIND(rs.getInt(9));
+					Boardbean.setBOARD_TAG(rs.getString(10));
+					Boardbean.setBOARD_CATEGORY(rs.getString(11));
+					boardlist.add(Boardbean);				
+				}while(rs.next()) ;			
+		} catch(Exception e) {
+			System.out.println("list 오류"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return boardlist;
+	}
+	
 	public int registArticle(BoardBean boardBean) {
-		MemberBean memberBean = new MemberBean();
 		int num = 0;
 		int insertResult = 0;
 		String sql1 = "SELECT MAX(BOARD_NUM) FROM BOARD";

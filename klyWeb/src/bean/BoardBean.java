@@ -1,10 +1,12 @@
 package bean;
 
-public class BoardBean {
+import java.util.Date;
 
+public class BoardBean {
+	private String MEMBER_ID;
 	private int BOARD_NUM;	//글 번호
 	private String BOARD_SUBJECT;	//글제목
-	private int BOARD_DATE;	//작성 시간
+	private Date BOARD_DATE;	//작성 시간
 	private String BOARD_VIDEO_FILE;	//동영상 파일
 	private String BOARD_VIDEO_URL;	//동영상 URL
 	private int BOARD_READCOUNT;	//게시물 조회수
@@ -13,6 +15,12 @@ public class BoardBean {
 	private String BOARD_TAG;	//태그
 	private String BOARD_CATEGORY;	//카테고리
 	
+	public String getMEMBER_ID() {
+		return MEMBER_ID;
+	}
+	public void setMEMBER_ID(String mEMBER_ID) {
+		MEMBER_ID = mEMBER_ID;
+	}
 	public String getBOARD_CATEGORY() {
 		return BOARD_CATEGORY;
 	}
@@ -31,10 +39,10 @@ public class BoardBean {
 	public void setBOARD_SUBJECT(String bOARD_SUBJECT) {
 		BOARD_SUBJECT = bOARD_SUBJECT;
 	}
-	public int getBOARD_DATE() {
+	public Date getBOARD_DATE() {
 		return BOARD_DATE;
 	}
-	public void setBOARD_DATE(int bOARD_DATE) {
+	public void setBOARD_DATE(Date bOARD_DATE) {
 		BOARD_DATE = bOARD_DATE;
 	}
 	public String getBOARD_VIDEO_FILE() {
