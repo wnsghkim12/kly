@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import bean.ActionForward;
 import bean.MemberBean;
 import service.MemberDropService;
-import service.MemberLoginService;
 
 public class MemberDropAction implements Action {
 

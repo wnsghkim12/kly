@@ -39,7 +39,7 @@ public class MemberLoginAction implements Action {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");
 		
-		if(loginInfo!=null) {
+		if(loginInfo != null) {
 			HttpSession session = request.getSession();
 			af = new ActionForward();
 			// 성공 했으면 다시 메인 페이지로

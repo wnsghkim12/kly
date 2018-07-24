@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.ActionForward;
 import bean.MemberBean;
-import service.MemberDropService;
-import service.MemberLoginService;
 import service.MemberModifyService;
 
 public class MemberModifyAction implements Action {

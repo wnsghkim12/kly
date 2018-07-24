@@ -9,7 +9,6 @@ import java.sql.Connection;
 
 import bean.BoardBean;
 import dao.BoardDAO;
-import dao.MemberDAO;
 
 public class BoardWriteService {
 

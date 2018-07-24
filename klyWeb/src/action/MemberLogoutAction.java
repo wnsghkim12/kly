@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.ActionForward;
 import bean.MemberBean;
-import service.MemberLoginService;
 
 public class MemberLogoutAction implements Action {
 
