@@ -15,17 +15,21 @@
 
 <body>
 
-    <div class="container">
-        <h2>Fading Modal</h2>
-        <p>Add the "fade" class to the modal container if you want the modal to fade in on open and fade out on close.</p>
+	<!-- 상단바(footer) -->
+	<%@include file="./navbarTemplate.jsp" %>
 
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#board">
-    Open modal
-  </button>
+	<!-- 본문 내용 -->
+	<div class="container">
+		<h2>Fading Modal</h2>
+		<p>Add the "fade" class to the modal container if you want the modal to fade in on open and fade out on close.</p>
+
+		<!-- Button to Open the Modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#board">
+			Open modal
+		</button>
 
         <!-- The Modal -->
-        <form action="boardWrite.kly" method="get">
+        <form action="./boardWrite.kly" method="get" enctype="multipart/form-data" id="boardWrite" onsubmit="return alertSelectCategory()">
             <div class="modal fade" id="board">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -38,28 +42,30 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-
-                            <div class="form-group" id="category">
-                                <label for="category" style="display:inline;">게시판</label>
-                                <select class="form-control" name="category" id="category">
-						<option value = "select" disabled>게시판을 선택하세요</option><!-- '게시판을 선택하세요'입력하면 alert : '게시판을 선택하세요' --> 
-						<option value = "free" >자유</option>
-						<option value = "pubg">배그</option>
-						<option value = "lol">롤</option>
-						<option value = "animal">동물</option>
-					</select>
+							<div class="form-group" id="category">
+ 								<label for="category" style="display:inline;">게시판</label>
+								<select class="form-control" name="category" id="selectedCategory">
+									<option value = "select" selected="selected">게시판을 선택하세요</option><!-- '게시판을 선택하세요'입력하면 alert : '게시판을 선택하세요' --> 
+									<option value = "free" >자유</option>
+									<option value = "pubg">배그</option>
+									<option value = "lol">롤</option>
+									<option value = "animal">동물</option>
+								</select>
                             </div>
+						
 							<input type = hidden name = "ID" value = "${loginInfo.getMEMBER_ID()}">
+                        
                             <div id="subject">
                                 <label for="subject" style="display:inline;">제목</label>
                                 <input type="text" class="form-control" name="subject" placeholder="게시글 제목을 입력하세요" required>
                             </div>
 
                             <div id="video">
-
-                                <label for="video_upload"><input type = "radio" id="video_upload" name="select_video" value="upload" onclick="switchDisplay('input_upload');">동영상 올리기</label>
-
-                                <label for="video_URL"><input type="radio" id="video_URL" name="select_video" value="url" onclick="switchDisplay('input_url');">URL</label>
+                                <label for="video_upload">동영상 올리기</label>
+                                <input type = "radio" id="video_upload" name="select_video" value="upload" onclick="switchDisplay('input_upload');">
+                                
+                                <label for="video_URL">URL</label>
+                                <input type="radio" id="video_URL" name="select_video" value="url" onclick="switchDisplay('input_url');">
 
                                 <div id="input_upload" style="display:none">
                                     <input type="file" name="file">
@@ -82,7 +88,7 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" data-dismiss="modal">등록</button>
+                            <button type="submit" class="btn btn-primary">등록</button><!-- data-dismiss="modal" -->
                         </div>
                     </div>
                 </div>
@@ -95,11 +101,16 @@
 </body>
 
 <script>
-    /* function alertSelectCategory() {
-    var whatCategory = document.getElementById("category");
-    if (whatCategory === "select")
-    alert('게시판을 선택하세요.');
-    }*/
+	function alertSelectCategory() {
+		var whatCategory = document.getElementById("selectedCategory");
+		if (whatCategory.value == "select") {
+			alert('게시판을 선택하세요.');
+			document.getElementById("category").focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
 
     /*동영상 첨부 방식선택*/
     function switchDisplay(select) {

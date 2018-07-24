@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BoardWriteAction;
 import action.MemberDetailAction;
 import action.MemberDropAction;
 import action.MemberJoinAction;
@@ -96,6 +97,13 @@ public class MemberController extends HttpServlet {
 			}
 		} else if(command.equals("/memberInfoRivision.kly")) {
 			action = new MemberModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardWrite.kly")) {
+			action = new BoardWriteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
