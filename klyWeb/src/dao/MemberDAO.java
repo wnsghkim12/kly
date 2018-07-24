@@ -211,15 +211,16 @@ public class MemberDAO {
 	
 	public String getUserEmail(String memberID) {
 		String sql = "SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_ID = ?";
-		
+		String result = null;
+		System.out.println("MemberDAO 로 넘어온 memberID의 값 : "+memberID);
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberID);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				System.out.println();
-				return rs.getString(1);
+				System.out.println("이메일 결과 값이 존재");
+				result = rs.getString(1);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -231,7 +232,7 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-		return null; // 데이터베이스 오류
+		return result; // 데이터베이스 오류
 	}
 
 

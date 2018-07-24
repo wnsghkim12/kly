@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import bean.ActionForward;
 
@@ -28,8 +29,9 @@ public class EmailAuthAction implements Action {
 		System.out.println("이메일 인증, session id : " + session.getAttribute("memberID"));
 		
 		String memberID= null;
-		if(session.getAttribute("merberID") != null) {
+		if(session.getAttribute("memberID") != null) {
 			memberID = (String) session.getAttribute("memberID");
+			System.out.println("EmailAuthAction에서 memberID에 세션 값 저장 : "+memberID);
 		}
 		if(memberID == null) {
 			PrintWriter script = response.getWriter();
@@ -56,6 +58,9 @@ public class EmailAuthAction implements Action {
 		String host = "http://localhost:8081/C1LectureEvaluation/";
 		String from = "gryb809@gmail.com";
 		String to = eas.getUserEmail(memberID); // 유저의 가입 이메일 가져오기.
+		
+		System.out.println("EmailAuthAction 에서 얻어온 이메일의 값 : "+to);
+		
 		String subject = "강의평가를 위한 이메일 인증 메일 입니다.";
 		String content = "다음 링크에 접속하여 인증을 진행하세요."+
 					"<a href='" + host + "emailCheckAction.le?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>"; 
