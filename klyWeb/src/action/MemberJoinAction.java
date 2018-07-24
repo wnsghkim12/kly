@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.ActionForward;
 import bean.MemberBean;
@@ -41,13 +42,19 @@ public class MemberJoinAction implements Action {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");
 		if(result!=0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("memberID", mb.getMEMBER_ID());
+			
+			System.out.println("가입 완료, session id : " + session.getAttribute("memberID"));
+			
 			af = new ActionForward();
-			// 성공 했으면 다시 메인 페이지로
-			af.setPath("./index.jsp");
+			af.setPath("./emailAuthAction.kly");
+	
 			af.setRedirect(true);
 		} else {
 			out.println("<script>");
 			out.println("alert('가입에 실패했습니다.')");
+			out.println("location.href='./index.jsp';");
 			out.println("</script>");
 		}
 		

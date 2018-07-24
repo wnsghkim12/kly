@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.BoardListAction;
 import action.BoardWriteAction;
+import action.EmailAuthAction;
 import action.MemberDetailAction;
 import action.MemberDropAction;
 import action.MemberJoinAction;
@@ -68,6 +69,13 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if(command.equals("/emailAuthAction.kly")) {
+			action = new EmailAuthAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/memberLogin.kly")) {
 			action = new MemberLoginAction();
 			try {

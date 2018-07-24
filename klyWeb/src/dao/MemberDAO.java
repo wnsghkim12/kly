@@ -183,4 +183,55 @@ public class MemberDAO {
 
 	}
 
+	public boolean getUserEmailChecked(String memberID) {
+		String sql = "SELECT MEMBER_CHECKED FROM MEMBER WHERE MEMBER_ID = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getInt(1) == 1)
+					return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				rs.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false; // 데이터베이스 오류
+	}
+	
+	public String getUserEmail(String memberID) {
+		String sql = "SELECT MEMBER_EMAIL FROM MEMBER WHERE MEMBER_ID = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println();
+				return rs.getString(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				rs.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null; // 데이터베이스 오류
+	}
+
+
 }
