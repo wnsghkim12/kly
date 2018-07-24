@@ -17,7 +17,8 @@ public class MemberLoginService {
 		MemberBean loginInfo = memberDAO.loginMember(mb);
 
 		close(con);
-		
+		if(loginInfo==null)
+			System.out.println(":: 서비스에서 null을 보냄\n");
 		return loginInfo;
 	}
 

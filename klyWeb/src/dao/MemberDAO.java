@@ -72,21 +72,22 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mb.getMEMBER_ID());
 			rs = pstmt.executeQuery();
+			System.out.println("::DB에서 아이디 값 : "+mb.getMEMBER_ID());
 			System.out.println("로그인 시도\n");
-			rs.next();
-			System.out.println("쿼리 결과 존재");
-			if(rs.getString("MEMBER_PW").equals(mb.getMEMBER_PW())) {
-				System.out.println("로그인 성공");
-				mb.setMEMBER_ID(rs.getString(1));
-				mb.setMEMBER_PW(rs.getString(2));
-				mb.setMEMBER_EMAIL(rs.getString(3));
-				mb.setMEMBER_CHECKED(rs.getInt(4));
-				mb.setMEMBER_DATE(rs.getDate(5));
-				mb.setMEMBER_SUSPENED(rs.getInt(6));
+			if(rs.next()) {
+				System.out.println("쿼리 결과 존재");
+				if(rs.getString("MEMBER_PW").equals(mb.getMEMBER_PW())) {
+					System.out.println("로그인 성공");
+					mb.setMEMBER_ID(rs.getString(1));
+					mb.setMEMBER_PW(rs.getString(2));
+					mb.setMEMBER_EMAIL(rs.getString(3));
+					mb.setMEMBER_CHECKED(rs.getInt(4));
+					mb.setMEMBER_DATE(rs.getDate(5));
+					mb.setMEMBER_SUSPENED(rs.getInt(6));
+				} 
 			} else {
 				mb = null;
 			}
-			
 						
 		} catch(Exception e) {
 			e.printStackTrace();
