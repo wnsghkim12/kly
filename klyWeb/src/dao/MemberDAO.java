@@ -235,5 +235,27 @@ public class MemberDAO {
 		return result; // 데이터베이스 오류
 	}
 
+	public int setUserEmailChecked(String memberID) {
+		String sql = "UPDATE MEMBER SET MEMBER_CHECKED = 1 WHERE MEMBER_ID = ?";
+		System.out.println("setUserEmailChecked에 넘어온 유저 아이디 : "+memberID);
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberID);
+			result = pstmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
 
 }

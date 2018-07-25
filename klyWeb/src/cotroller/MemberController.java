@@ -13,6 +13,7 @@ import action.Action;
 import action.BoardListAction;
 import action.BoardWriteAction;
 import action.EmailAuthAction;
+import action.EmailCheckedAction;
 import action.MemberDetailAction;
 import action.MemberDropAction;
 import action.MemberJoinAction;
@@ -71,6 +72,13 @@ public class MemberController extends HttpServlet {
 			
 		} else if(command.equals("/emailAuthAction.kly")) {
 			action = new EmailAuthAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/emailCheckedAction.kly")) {
+			action = new EmailCheckedAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

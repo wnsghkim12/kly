@@ -25,10 +25,28 @@ public class EmailAuthService {
 		Connection con = getConnection();
 		memberDAO.setConnection(con);
 		
-		String userEmail = memberDAO.getUserEmail(memberID);
+		String memberEmail = memberDAO.getUserEmail(memberID);
 
 		close(con);
-		return userEmail;
+		return memberEmail;
+	}
+
+	public boolean setUserEmailChecked(String memberID) {
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		Connection con = getConnection();
+		memberDAO.setConnection(con);
+		
+		int setResult = memberDAO.setUserEmailChecked(memberID);
+		boolean result = false;
+		if(setResult!=0) {
+			commit(con);
+			result = true;
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		return result;
 	}
 
 }

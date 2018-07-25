@@ -55,15 +55,15 @@ public class EmailAuthAction implements Action {
 			script.close();
 		}
 		
-		String host = "http://localhost:8081/C1LectureEvaluation/";
+		String host = "http://localhost:8081/klyWeb/";
 		String from = "gryb809@gmail.com";
 		String to = eas.getUserEmail(memberID); // 유저의 가입 이메일 가져오기.
 		
 		System.out.println("EmailAuthAction 에서 얻어온 이메일의 값 : "+to);
 		
-		String subject = "강의평가를 위한 이메일 인증 메일 입니다.";
+		String subject = "KLY 회원 인증 이메일 입니다.";
 		String content = "다음 링크에 접속하여 인증을 진행하세요."+
-					"<a href='" + host + "emailCheckAction.le?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>"; 
+					"<a href='" + host + "emailCheckedAction.kly?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>"; 
 		
 		Properties p = new Properties();
 		p.put("mail.smtp.user", from);
