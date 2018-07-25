@@ -31,13 +31,13 @@ public class BoardListAction implements Action{
 							forward.setPath("List.jsp");
 						}
 					}
-				}else {
+				} else {
 					request.setAttribute("boardlist", boardlist);
 					forward = new ActionForward();
 					forward.setPath("List.jsp");
 				}
 				return forward;
-			}else{
+			} else {
 				ArrayList<BoardBean> boardlist = boardlistservice.getReadlist();
 				
 				if(category!=null) {
@@ -55,23 +55,23 @@ public class BoardListAction implements Action{
 				}
 				return forward;
 			}
-		}else {
-		ArrayList<BoardBean> boardlist = boardlistservice.getboardlist();
-		
-		if(category!=null) {
-			for(int i = 0; i<boardlist.size(); i++) {
-				if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
-					request.setAttribute("boardlist", boardlist);
-					forward = new ActionForward();
-					forward.setPath("List.jsp");
+		} else {
+			ArrayList<BoardBean> boardlist = boardlistservice.getboardlist();
+			
+			if(category!=null) {
+				for(int i = 0; i<boardlist.size(); i++) {
+					if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
+						request.setAttribute("boardlist", boardlist);
+						forward = new ActionForward();
+						forward.setPath("List.jsp");
+					}
 				}
+			}else {
+				request.setAttribute("boardlist", boardlist);
+				forward = new ActionForward();
+				forward.setPath("List.jsp");
 			}
-		}else {
-			request.setAttribute("boardlist", boardlist);
-			forward = new ActionForward();
-			forward.setPath("List.jsp");
+			return forward;
 		}
-		return forward;
-	}
 	}
 }

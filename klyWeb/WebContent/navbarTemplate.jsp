@@ -34,7 +34,18 @@
 		       		</button>
         		</div>
         	</c:when>
-
+			
+			<c:when test="${loginInfo.getMEMBER_ID().equals('admin')}">
+        		<div class="btn-group">
+		       		 <button class="btn btn-outline-info" onclick="location.href='./adminBoard.jsp'">
+	        	    	관리자 모드
+	        	    </button>
+	        	    <button class="btn btn-outline-danger" onclick="location.href='./memberLogout.kly'">
+	        	    	로그아웃
+	        	    </button>
+        		</div>
+        	</c:when>
+        	
         	<c:otherwise>
 	        	<div class="btn-group">
 	        	    <button class="btn btn-outline-primary" onclick="location.href='./memberDetail.kly'">

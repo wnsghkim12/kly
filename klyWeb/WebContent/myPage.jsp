@@ -76,7 +76,7 @@
                                 <label><h5>현재 비밀번호</h5></label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="form-control" name="currentPassword" type="text" placeholder="현재 비빌번호를 입력해 주세요."/>
+                                <input class="form-control" name="currentPassword" type="text" placeholder="현재 비밀번호를 입력해 주세요."/>
                            </div>
                         </div>
                         <div class="row mb-3">
@@ -84,7 +84,7 @@
                                 <label><h5>바꿀 비밀번호</h5></label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="form-control" name="changePassword" type="text" placeholder="바꿀 비빌번호를 입력해 주세요."/>
+                                <input class="form-control" name="changePassword" type="text" placeholder="바꿀 비밀번호를 입력해 주세요."/>
                            </div>
                         </div>
                         <div class="row mb-3">
@@ -92,7 +92,7 @@
                                 <label><h5>비밀번호 확인</h5></label>
                             </div>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" placeholder="바꿀 비빌번호를 한번 더 입력해 주세요."/>
+                                <input class="form-control" type="text" placeholder="바꿀 비밀번호를 한번 더 입력해 주세요."/>
                            </div>
                         </div>
                         <div class="row mb-3">
