@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="bean.MemberBean" %>
+<%@ page import="bean.CommentBean" %>
+<%@ page import="java.util.*" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -26,7 +27,7 @@
 			<div class="container">
 				<div class="list-group">
 					<a class="list-group-item" href="adminBoard.jsp">게시물 관리(관리자)</a>
-					<a class="list-group-item active" href="adminComment.jsp">댓글 관리(관리자)</a>
+					<a class="list-group-item active" href="adminComment.kly">댓글 관리(관리자)</a>
 					<a class="list-group-item" href="adminMember.jsp">사용자 관리(관리자)</a>
 				</div>
 			</div>
@@ -34,29 +35,30 @@
 		
 		<div class="col-md-7 col-lg-10">
 			<table class="table table-hover">
-		
-			<tr>
-				<td rowspan="4" style="width: 20%; vertical-align: middle;"><img src="./images/Lighthouse.jpg" class="img-thumbnail" alt="thumbnail" width="210"></td>
-				<td>제목 &nbsp;subject</td>
-				<td rowspan="4" style="width: 15%; vertical-align: middle"><button type="button" class="btn">삭제</button>&nbsp;&nbsp;<button type="button" class="btn">해제</button></td>
-			</tr>
-		    <tr>
-		    	<td>신고된 댓글 &nbsp;report Comment</td>
-		    </tr>
-		    <tr>
-		    	<td>신고 수 &nbsp;report Num</td>
-		    </tr>
-		    <tr>
-		   		<td>신고 시간 &nbsp;report time</td>
-		    </tr>
-		    
-	    </table>
+				<c:forEach var="comment" items="${suspendCommentList}">
+					<tr>
+						<td rowspan="4" style="width: 20%; vertical-align: middle;"><img src="./images/Lighthouse.jpg" class="img-thumbnail" alt="thumbnail" width="210"></td>
+						<td>댓글 번호&nbsp;${comment.COMMENT_NUM}</td>
+						<td rowspan="4" style="width: 15%; vertical-align: middle"><button type="button" class="btn">삭제</button>&nbsp;&nbsp;<button type="button" class="btn">해제</button></td>
+					</tr>
+					<tr>
+						<td>댓글 작성자 &nbsp;${comment.MEMBER_ID}</td>
+					</tr>
+					<tr>
+						<td>댓글 신고 수 &nbsp;${comment.COMMENT_BLIND}</td>
+					</tr>
+					<tr>
+						<td>댓글 작성 시간 &nbsp;${comment.COMMENT_DATE}</td>
+					</tr>
+		    	</c:forEach>
+			</table>
+		    	
 		    <div style="padding: 10px; text-align:center;">
-		    	<button type="button" class="btn btn-primary">이전</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary">다음</button></td>
+		    	<button type="button" class="btn btn-primary">이전</button>&nbsp;&nbsp;
+		    	<button type="button" class="btn btn-primary">다음</button>
 		    </div>
     	</div>
     </div>
-
     
     <!-- 하단바(footer) -->
     <div class="jumbotron text-center">

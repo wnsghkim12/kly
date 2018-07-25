@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminCommentListAction;
 import action.BoardListAction;
 import action.BoardWriteAction;
 import action.EmailAuthAction;
@@ -128,6 +129,13 @@ public class MemberController extends HttpServlet {
 			}
 		} else if(command.equals("/boardList.kly")) {
 			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/adminComment.kly")) {
+			action = new AdminCommentListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

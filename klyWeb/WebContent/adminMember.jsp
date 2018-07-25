@@ -26,7 +26,7 @@
 			<div class="container">
 				<div class="list-group">
 					<a class="list-group-item" href="adminBoard.jsp">게시물 관리(관리자)</a>
-					<a class="list-group-item" href="adminComment.jsp">댓글 관리(관리자)</a>
+					<a class="list-group-item" href="adminComment.kly">댓글 관리(관리자)</a>
 					<a class="list-group-item active" href="adminMember.jsp">사용자 관리(관리자)</a>
 				</div>
 			</div>
