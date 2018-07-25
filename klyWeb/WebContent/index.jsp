@@ -7,8 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./style.css" type="text/css">
-    
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -20,69 +18,115 @@
 </head>
 
 <body>
-  
+
 	<!-- 상단바(footer) -->
-    <%@include file="./navbarTemplate.jsp" %>
+	<%@include file="./navbarTemplate.jsp" %>
 
 	<!-- 내용 부분 -->
 	<div class="container">
-        <img class="mx-auto d-block" src="./images/logo_black.png" style="height: 300px"/>
-        
-        <!-- 검색메뉴 -->
-        <form class="form-inline flex-column" action="index.html" method="post">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-9">     
-                        <input type="text" class="form-control" id="search">
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="submit" class="btn btn-success">검색</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-        
-        <table class="table table-hover mt-3">
-            <tr>
-                <td colspan="4" style="text-align: center;">
-                    <button class="btn btn-info" type="button" onclick="location.href='./boardList.kly'">전체보기</button>
-                </td>
-                <td>
-                    <select>
-                        <option>추천순</option>
-                        <option>조회순</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>번호</th>
-                <th colspan="2">제목</th>
-                <th>좋아요</th>
-                <th>조회수</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>img</td>
-                <td>subject</td>
-                <td>12</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>img</td>
-                <td>subject</td>
-                <td>12</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>img</td>
-                <td>subject</td>
-                <td>12</td>
-                <td>2</td>
-            </tr>
-            
-        </table>
+		<img class="mx-auto d-block" src="./images/kly.png" style="height: 400px"/>
+
+		<!-- 검색메뉴 -->
+		<form class="form-inline flex-column mb-2" action="./index.html" method="post">
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" id="search" placeholder="검색어를 입력해 주세요.">
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-success">검색</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	
+		<div class="row my-3">
+			<div class="col-lg-6">
+				<table class="table table-hover mt-3" style="text-align: center;">
+					<thead class="thead-light">
+						<tr>
+							<th colspan="5" style="text-align: center;">
+								조회수 상위 5개 게시물
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+			            <tr style="font-weight: bold;">
+			                <td>번호</td>
+			                <td colspan="2">제목</td>
+			                <td>좋아요</td>
+			                <td>조회수</td>
+			            </tr>
+					<!-- 여기서 게시물 반복 -->
+			            <tr>
+			                <td>1</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+					<!-- 여기까지 -->
+			            <tr>
+			                <td>2</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+			            <tr>
+			                <td>3</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+		            </tbody>
+		        </table>	
+			</div>
+			
+			<!-- <div class="col-lg-2"></div> -->
+			
+			<div class="col-lg-6">
+				<table class="table table-hover mt-3" style="text-align: center;">
+					<thead class="thead-light">
+						<tr>
+							<th colspan="5">
+			                    	추천수 상위 5개 게시물
+			                </th>
+						</tr>
+					</thead>
+		            <tbody>
+			            <tr style="font-weight: bold;">
+			                <td>번호</td>
+			                <td colspan="2">제목</td>
+			                <td>좋아요</td>
+			                <td>조회수</td>
+			            </tr>
+			            <tr>
+			                <td>1</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+			            <tr>
+			                <td>2</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+			            <tr>
+			                <td>3</td>
+			                <td>img</td>
+			                <td>subject</td>
+			                <td>12</td>
+			                <td>2</td>
+			            </tr>
+		            </tbody>
+		        </table>
+			</div>
+		</div>
+		
 	</div>
 
 	<!-- 하단바(footer) -->
