@@ -25,21 +25,25 @@
         
         <c:choose>
         	<c:when test="${empty loginInfo.getMEMBER_ID()}">
-        		<button class="btn btn-primary" data-toggle="modal" data-target="#loginForm">
-					로그인
-				</button>
-        		<button class="btn btn-primary ml-2" data-toggle="modal" data-target="#joinForm">
-					회원가입
-        		</button>
+        		<div class="btn-group">
+		       		<button class="btn btn-outline-primary" data-toggle="modal" data-target="#loginForm">
+						로그인
+					</button>
+		       		<button class="btn btn-outline-primary" data-toggle="modal" data-target="#joinForm">
+						회원가입
+		       		</button>
+        		</div>
         	</c:when>
 
         	<c:otherwise>
-        	    <button class="btn btn-primary" onclick="location.href='./memberDetail.kly'">
-        	    	마이페이지
-        	    </button>
-        	    <button class="btn btn-danger ml-2" onclick="location.href='./memberLogout.kly'">
-        	    	로그아웃
-        	    </button>
+	        	<div class="btn-group">
+	        	    <button class="btn btn-outline-primary" onclick="location.href='./memberDetail.kly'">
+	        	    	마이페이지
+	        	    </button>
+	        	    <button class="btn btn-outline-danger" onclick="location.href='./memberLogout.kly'">
+	        	    	로그아웃
+	        	    </button>
+	        	</div>
         	</c:otherwise>
         </c:choose>
 		

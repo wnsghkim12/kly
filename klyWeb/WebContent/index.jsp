@@ -27,16 +27,22 @@
 		<img class="mx-auto d-block" src="./images/kly.png" style="height: 400px"/>
 
 		<!-- 검색메뉴 -->
-		<form class="form-inline flex-column mb-2" action="./index.html" method="post">
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control" id="search" placeholder="검색어를 입력해 주세요.">
-					<div class="input-group-append">
-						<button type="submit" class="btn btn-success">검색</button>
+		<div class="row">
+			<div class="col-lg-4 col-md-3"></div>
+			<div class="col-lg-4 col-md-6">
+				<form class="form mb-2" action="./List.jsp" method="get" style="max-width:400px;">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" name="search" placeholder="검색어를 입력해 주세요.">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-success">검색</button>
+							</div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
-		</form>
+			<div class="col-lg-4 col-md-3"></div>
+		</div>
 		
 	
 		<div class="row my-3">
