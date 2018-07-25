@@ -29,7 +29,7 @@
 		</button>
 
         <!-- The Modal -->
-        <form action="./boardWrite.kly" method="get" enctype="multipart/form-data" id="boardWrite" onsubmit="return alertSelectCategory()">
+        <form action="./boardWrite.kly" method="get" id="boardWrite" onsubmit="return alertSelectCategory()">
             <div class="modal fade" id="board">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -53,7 +53,7 @@
 								</select>
                             </div>
 						
-							<input type = hidden name = "ID" value = "${loginInfo.getMEMBER_ID()}">
+							<input type = hidden name="ID" value="${loginInfo.getMEMBER_ID()}">
                         
                             <div id="subject">
                                 <label for="subject" style="display:inline;">제목</label>
@@ -62,19 +62,18 @@
 
                             <div id="video">
                                 <label for="video_upload">동영상 올리기</label>
-                                <input type = "radio" id="video_upload" name="select_video" value="upload" onclick="switchDisplay('input_upload');">
+                                <input type = "radio" id="video_upload" name="videoFile" value="upload" onclick="switchDisplay('input_upload');">
                                 
                                 <label for="video_URL">URL</label>
-                                <input type="radio" id="video_URL" name="select_video" value="url" onclick="switchDisplay('input_url');">
+                                <input type="radio" id="video_URL" name="videoURL" value="url" onclick="switchDisplay('input_url');">
 
                                 <div id="input_upload" style="display:none">
                                     <input type="file" name="file">
                                 </div>
 
                                 <div id="input_url" style="display:none">
-                                    <input type="url" class="form-control" name="link" placeholder="http://">
+                                    <input type="url" class="form-control" name="link" value="http://">
                                 </div>
-
                             </div>
 
 

@@ -178,8 +178,10 @@ public class BoardDAO {
 		int num = 0;
 		int insertResult = 0;
 		String sql1 = "SELECT MAX(BOARD_NUM) FROM BOARD";
-		String sql2 = "INSERT INTO BOARD VALUES (?,?,?,SYSDATE,?,?,?,?,?,?)";
-						//아이디, 글번호, 카테고리, 글제목, 작성시간, 파일, 파일, 조회수, 좋아요, 차단, 태그
+		String sql2 = "INSERT INTO BOARD ("
+				+ "MEMBER_ID, BOARD_NUM, BOARD_SUBJECT, BOARD_DATE, BOARD_URL, BOARD_READCOUNT,"
+				+ "BOARD_LIKECOUNT, BOARD_BLIND, BOARD_TAG, BOARD_CATEGORY) "
+				+ "VALUES (?,?,?,SYSDATE,?,?,?,?,?,?)";
 		
 		try {
 			//글번호를 1씩 증가시키기위한 쿼리문
@@ -192,20 +194,16 @@ public class BoardDAO {
 			}
 			//글등록을 하는 부분,물음표 부분 채우기
 			pstmt = con.prepareStatement(sql2);
-//			pstmt.setString(1, memberBean.getMEMBER_ID());
-			//pstmt.setString(1, "df");
-			pstmt.setInt(1, num);
-			pstmt.setString(2, boardBean.getBOARD_CATEGORY());
-			pstmt.setString(3, boardBean.getBOARD_SUBJECT());
 			
-			/*pstmt.setString(5, boardBean.getBOARD_VIDEO_FILE());
-			pstmt.setString(6, boardBean.getBOARD_VIDEO_URL());*/
-			pstmt.setString(4, "asd");
-			pstmt.setString(5, "hg");
-			pstmt.setInt(6, num);
-			pstmt.setInt(7, 0);
-			pstmt.setInt(8, 0);
-			pstmt.setString(9, boardBean.getBOARD_TAG());
+			pstmt.setString(1, boardBean.getMEMBER_ID());
+			pstmt.setInt(2, num); // 글 번호
+			pstmt.setString(3, boardBean.getBOARD_SUBJECT());
+			pstmt.setString(4, boardBean.getBOARD_VIDEO_URL());
+			pstmt.setInt(5, 0); // 조회 수
+			pstmt.setInt(6, 0); // 추천수
+			pstmt.setInt(7, 0); // 신고 수
+			pstmt.setString(8, boardBean.getBOARD_TAG());
+			pstmt.setString(9, boardBean.getBOARD_CATEGORY());
 			
 			//쿼리문 실행
 			insertResult = pstmt.executeUpdate();

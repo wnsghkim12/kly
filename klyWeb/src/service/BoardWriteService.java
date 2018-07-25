@@ -12,7 +12,7 @@ import dao.BoardDAO;
 
 public class BoardWriteService {
 
-	public boolean BoardService(BoardBean boardBean){
+	public boolean boardWrite(BoardBean boardBean){
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		Connection con = getConnection();
 		boardDAO.setConnection(con);
@@ -20,7 +20,6 @@ public class BoardWriteService {
 		boolean boardResult = false;
 		
 		int result = boardDAO.registArticle(boardBean);
-		System.out.println("board서비스부분");
 	
 		if(result > 0) { 
 			boardResult = true;
