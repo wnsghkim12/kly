@@ -16,13 +16,12 @@
 %>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand/logo -->
-        <a href="./index.jsp"><img src="./images/logo.png" style="height: 45px" /></a>
+        <a href="./index.jsp"><img src="./images/kly_logo_white.png" style="height: 45px" /></a>
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             
         </ul>
-        
         
         <c:choose>
         	<c:when test="${empty loginInfo.getMEMBER_ID()}">
@@ -32,20 +31,18 @@
         		<button class="btn btn-primary ml-2" data-toggle="modal" data-target="#joinForm">
 					회원가입
         		</button>
-        			
         	</c:when>
 
         	<c:otherwise>
-        		${loginInfo.getMEMBER_ID()}
         	    <button class="btn btn-primary" onclick="location.href='./memberDetail.kly'">
         	    	마이페이지
         	    </button>
-        	    <button class="btn btn-danger" onclick="location.href='./memberLogout.kly'">
+        	    <button class="btn btn-danger ml-2" onclick="location.href='./memberLogout.kly'">
         	    	로그아웃
         	    </button>
         	</c:otherwise>
         </c:choose>
-
+		
         <!-- 로그인(modal) -->
         <div class="modal" id="loginForm">
             <div class="modal-dialog">
