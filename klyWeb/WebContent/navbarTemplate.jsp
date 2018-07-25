@@ -78,7 +78,38 @@
                 </div>
             </div>
         </div>
-        
+<script>
+	/* 아이디 중복체크 */
+	function idCheck() {
+		var memberID = $('#id').val();
+		$.ajax({
+			type : "POST",
+			url : "./memberJoinIdCheck.kly",
+			data: {memberID : memberID},
+			success: function(result) {
+				if(result == 1) {
+					$('#idCheckMessage').html('사용할 수 있는 아이디 입니다.');
+					$('#checkType').attr('class','modal-content pannel-success');
+				} else {
+					$('#idCheckMessage').html('사용할 수 없 아이디 입니다.');
+					$('#checkType').attr('class','modal-content pannel-warning');
+				}
+				$('#idCheckForm').modal("show");
+			}
+			
+		})
+	}
+	
+	function passCheck() {
+		var pass1 = $("#pass1").val();
+		var pass2 = $("#pass2").val();
+		if(pass1 != pass2) {
+			$("#passCheckMessage").html("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+		} else {
+			$("#passCheckMessage").html("");
+		}
+	}
+</script>
         <!-- 회원가입(modal) -->
         <div class="modal" id="joinForm">
             <div class="modal-dialog">
@@ -90,26 +121,34 @@
                     <form action="memberJoin.kly" method="post">
                         <div class="form-group">
                             <div class="modal-body">
-                                <label><h5>아이디</h5></label>
-                                <input class="form-control" name="MEMBER_ID" type="text" id="id" />
-                                   
+                                <div class="row">
+									<div class="col-sm">
+		                                <h5><label>아이디</label></h5>
+		                                <input class="form-control" name="MEMBER_ID" type="text" id="id" placeholder="아이디를 입력해 주세요."/>
+									<!-- </div>
+									<div class="col-sm">
+										<button class="btn btn-primary" onclick="idCheck()">아이디 중복체크</button> -->
+									</div>
+                                </div>
+
                                 <div class="row mt-2 mb-2">
                                    <div class="col-sm">
                                        <label><h5>비밀번호</h5></label>
-                                        <input class="form-control" name="MEMBER_PW" type="password" id="pwd" />
+                                        <input class="form-control" name="MEMBER_PW" type="password" id="pass1" onkeyup="passCheck()" placeholder="비밀번호를 입력해 주세요."/>
                                     </div>
                                     <div class="col-sm">
                                         <label><h5>비밀번호 확인</h5></label>
-                                        <input class="form-control" type="password" id="pwd" />
+                                        <input class="form-control" type="password" id="pass2" onkeyup="passCheck()" placeholder="비밀번호를 한번 더  입력해 주세요."/>
                                     </div>
                                 </div>
                                 
                                 <label><h5>이메일</h5></label>
-                                <input class="form-control" name="MEMBER_EMAIL" type="email" id="id" />
+                                <input class="form-control" name="MEMBER_EMAIL" type="email" id="email" placeholder="이메일을 입력해 주세요."/>
                                 
                                     
                             </div>
-                            <div class="modal-footer">
+							<div class="modal-footer">
+								<p style="color:red;" id="passCheckMessage"></p>
                                 <button class="btn btn-primary" type="submit">가입</button>
                             </div>
                         </div>
@@ -117,6 +156,22 @@
                 </div>
             </div>
         </div>
+
+	<!-- 아이디 중복 체크 -->
+	<div class="modal" id="idCheckForm" tabindex="-1" role="diolog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content panel-info %>" id="checkType">
+				 <div class="modal-header">
+					<h4 class="modal-title">확인 메세지</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				
+				<div class="modal-body" id="idCheckMessage">
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
     </nav>
     
 </body>
