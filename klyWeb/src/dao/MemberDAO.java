@@ -4,6 +4,7 @@ import static db.JDBCUtil.*;
 
 import java.sql.*;
 
+import bean.BoardBean;
 import bean.MemberBean;
 
 public class MemberDAO {
@@ -255,6 +256,11 @@ public class MemberDAO {
 			}
 		}
 		return result;
+	}
+
+	public BoardBean getMemberArticle(String memberID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

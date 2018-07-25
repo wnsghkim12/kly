@@ -33,9 +33,10 @@
     <%@include file="./navbarTemplate.jsp" %>
 
     <!-- 내용 부분 -->
-    <h2 class="h1 ml-4 mt-4">My Page</h2>
+    <h2 class="h1 ml-4 mt-4">My Page List</h2>
     <div class="row mt-4 mb-4">
-        	
+        
+        <!-- 좌측 링크 -->	
         <div class="col-md-4 col-lg-2">
             <div class="container">
                 <div class="list-group">
@@ -46,70 +47,48 @@
             </div>
         </div>
         
-        <div class="col-md-8 col-lg-10">
-            <div class="container">
-                <h2>비밀번호 변경</h2>
-                <form class="form mt-5" action="memberInfoRivision.kly">
-                    <div class="form-group">
-                       <div class="row mb-3">
-                            <div class="col-sm-3" style="text-align: center;">
-                                <label><h5>아이디</h5></label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" readonly="readonly" value="${loginInfo.getMEMBER_ID()}"/>
-                           </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-sm-3" style="text-align: center;">
-                                <label><h5>현재 비밀번호</h5></label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" value="userId"/>
-                           </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3" style="text-align: center;">
-                                <label><h5>바꿀 비밀번호</h5></label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" value="userId"/>
-                           </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3" style="text-align: center;">
-                                <label><h5>비밀번호 확인</h5></label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" value="userId"/>
-                           </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3" style="text-align: center;">
-                                <label><h5>이메일</h5></label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" readonly="readonly" value="${loginInfo.getMEMBER_EMAIL()}"/>
-                           </div>
-                        </div>
-                        
-                        <div class="row text-right">
-                            <div class="col">
-                                <button class="btn btn-primary" type="submit">비밀 번호 변경</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        
-        </div>
-        
-    </div>
-    
-    <!-- 하단바(footer) -->
-    <div class="jumbotron text-center">
-        <p>&copy; 2018 kly</p>
-    </div>
-   
-  </body>
+		<div class="col-md-8 col-lg-10">
+			<div class="container">
+				<table class="table table-hover">
+					<thead class="thead-light">
+						<tr>
+							<th colspan="3">
+								<div class="container-fluid" style="text-align: center;">
+									<div class="btn-group center">
+										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=article';">작성한 게시물</button>
+										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=comment'">댓글</button>
+										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=liked'">추천한 게시물</button>
+									</div>
+								</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>게시물 번호</td>
+							<td>게시물 링크</td>
+							<td>수정 버튼</td>
+						<tr>
+						<tr>
+							<td>댓글 번호</td>
+							<td>게시물 링크</td>
+							<td>수정 버튼</td>
+						<tr>
+						<tr>
+							<td>추천 게시물 번호</td>
+							<td>게시물 링크</td>
+							<td>추천 취소 버튼</td> <!-- 추천하기 버튼 -->
+						<tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- 하단바(footer) -->
+	<div class="jumbotron text-center">
+		<p>&copy; 2018 kly</p>
+	</div>
+	
+</body>
 </html>

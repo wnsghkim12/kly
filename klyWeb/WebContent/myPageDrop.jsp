@@ -36,7 +36,8 @@
     <!-- 내용 부분 -->
     <h2 class="h1 ml-4 mt-4">My Page</h2>
     <div class="row mt-4 mb-4">
-        
+    
+        <!-- 좌측 링크 -->
         <div class="col-md-4 col-lg-3">
             <div class="container">
                 <div class="list-group">

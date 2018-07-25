@@ -15,6 +15,7 @@ import action.BoardListAction;
 import action.BoardWriteAction;
 import action.EmailAuthAction;
 import action.EmailCheckedAction;
+import action.MemberContentListAction;
 import action.MemberDetailAction;
 import action.MemberDropAction;
 import action.MemberJoinAction;
@@ -70,7 +71,6 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/emailAuthAction.kly")) {
 			action = new EmailAuthAction();
 			try {
@@ -120,7 +120,16 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/boardWrite.kly")) {
+			
+			
+		} else if(command.equals("/myContent.kly")) {
+			action = new MemberContentListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}  else if(command.equals("/boardWrite.kly")) {
 			action = new BoardWriteAction();
 			try {
 				forward = action.execute(request, response);

@@ -22,17 +22,6 @@ public class CommentListService {
 		return commentList;
 	}
 	
-	/** 멤버 한명의 게시글 가져오기 */
-	public CommentBean getMemberCommentList(String memberID){
-		CommentDAO commentDAO = CommentDAO.getInstance();
-		Connection con = getConnection();
-		commentDAO.setConnection(con);
-
-		CommentBean comment = commentDAO.getMemberCommentList(memberID);
-		close(con);
-		
-		return comment;
-	}
 
 	public ArrayList<CommentBean> getSuspendCommentList() {
 		CommentDAO commentDAO = CommentDAO.getInstance();

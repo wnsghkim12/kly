@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import bean.CommentBean;
+import bean.LikeBean;
 import bean.MemberBean;
 
 public class CommentDAO {
@@ -39,7 +40,7 @@ public class CommentDAO {
 	}
 	
 	// 해당 아이디의 댓글 전체 가져오기
-	public CommentBean getMemberCommentList(String memberID) {
+	public CommentBean getMemberComment(String memberID) {
 		String sql = "SELECT * FROM COMMENT WHERE MEMBER_ID = ?";
 		
 		CommentBean comment = null;
@@ -100,6 +101,11 @@ public class CommentDAO {
 			}
 		}
 		return commentList;
+	}
+
+	public LikeBean getMemberLike(String memberID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
