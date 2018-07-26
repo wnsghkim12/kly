@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.ActionForward;
 import bean.BoardBean;
+import bean.CommentBean;
+import service.BoardCommentListService;
 import service.BoardListService;
 
 
@@ -18,60 +20,69 @@ public class BoardListAction implements Action{
 		String category = request.getParameter("category");
 		String array = request.getParameter("array");
 		
-		ActionForward forward = null;
+		ActionForward actionForward = null;
 		BoardListService boardlistservice = new BoardListService();
+		BoardCommentListService boardCommentListService = new BoardCommentListService();
+		ArrayList<CommentBean> commentList = boardCommentListService.BoardCommentListService();
 		if(array!=null) {
 			if(array.equals("추천")) {
 				ArrayList<BoardBean> boardlist = boardlistservice.getLikelist();
 				if(category!=null) {
 					for(int i = 0; i<boardlist.size(); i++) {
 						if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
-							request.setAttribute("boardlist", boardlist);
-							forward = new ActionForward();
-							forward.setPath("List.jsp");
+							request.setAttribute("boardlist", boardlist.get(i));
+							request.setAttribute("commentlist", commentList);
+							actionForward = new ActionForward();
+							actionForward.setPath("List.jsp");
 						}
 					}
-				} else {
+				}else {
 					request.setAttribute("boardlist", boardlist);
-					forward = new ActionForward();
-					forward.setPath("List.jsp");
+					request.setAttribute("commentlist", commentList);
+					actionForward = new ActionForward();
+					actionForward.setPath("List.jsp");
 				}
-				return forward;
-			} else {
+				return actionForward;
+			}else{
 				ArrayList<BoardBean> boardlist = boardlistservice.getReadlist();
 				
 				if(category!=null) {
 					for(int i = 0; i<boardlist.size(); i++) {
 						if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
-							request.setAttribute("boardlist", boardlist);
-							forward = new ActionForward();
-							forward.setPath("List.jsp");
+							request.setAttribute("boardlist", boardlist.get(i));
+							request.setAttribute("commentlist", commentList);
+							actionForward = new ActionForward();
+							actionForward.setPath("List.jsp");
 						}
 					}
 				}else {
 					request.setAttribute("boardlist", boardlist);
-					forward = new ActionForward();
-					forward.setPath("List.jsp");
+					request.setAttribute("commentlist", commentList);
+					actionForward = new ActionForward();
+					actionForward.setPath("List.jsp");
 				}
-				return forward;
+				return actionForward;
 			}
-		} else {
-			ArrayList<BoardBean> boardlist = boardlistservice.getboardlist();
-			
-			if(category!=null) {
-				for(int i = 0; i<boardlist.size(); i++) {
-					if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
-						request.setAttribute("boardlist", boardlist);
-						forward = new ActionForward();
-						forward.setPath("List.jsp");
-					}
+		}else {
+		ArrayList<BoardBean> boardlist = boardlistservice.getboardList();
+		System.out.println(boardlist.size());
+		if(category!=null) {
+			for(int i = 0; i<boardlist.size(); i++) {
+				if(category.equals(boardlist.get(i).getBOARD_CATEGORY())) {
+					request.setAttribute("boardlist", boardlist.get(i));
+					request.setAttribute("commentlist", commentList);
+					actionForward = new ActionForward();
+					actionForward.setPath("List.jsp");
+					System.out.println(boardlist.size());
 				}
-			}else {
-				request.setAttribute("boardlist", boardlist);
-				forward = new ActionForward();
-				forward.setPath("List.jsp");
 			}
-			return forward;
+		}else {
+			request.setAttribute("boardlist", boardlist);
+			request.setAttribute("commentlist", commentList);
+			actionForward = new ActionForward();
+			actionForward.setPath("List.jsp");
 		}
+		return actionForward;
+	}
 	}
 }

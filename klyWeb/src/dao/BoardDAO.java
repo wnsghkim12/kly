@@ -13,6 +13,7 @@ import com.sun.corba.se.pept.transport.EventHandler;
 import com.sun.org.apache.regexp.internal.RE;
 
 import bean.BoardBean;
+import bean.CommentBean;
 
 public class BoardDAO {
 	DataSource ds;
@@ -509,6 +510,93 @@ public class BoardDAO {
 		return listCount;
 	}
 	
+	
+//	w
+	public int commentRegister(CommentBean commentBean) {
+		int commnetResult=0;
+		int num = 0;
+		String sql1 = "SELECT * FROM BOARD_COMMENT";
+		String sql2 = "INSERT INTO BOARD_COMMENT VAUES(?,?,?,?,SYSDAYE,?)";
+		try {
+			//댓글번호를 1씩 증가시키기위한 쿼리문
+			pstmt = con.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt(1)+1;
+			}else {
+				num=1;
+			}
+			pstmt = con.prepareStatement(sql2);
+			pstmt.setInt(1, commentBean.getBOARD_NUM());
+			pstmt.setString(2, commentBean.getMEMBER_ID());
+			pstmt.setInt(3, num);
+			pstmt.setString(4, commentBean.getCOMMENT_CON());
+			pstmt.setInt(5, 0);
+	}catch(Exception e){
+		System.out.println("댓글 달기 오류 !! : "+e);
+	}finally {
+		close(pstmt);
+		close(rs);
+	}
+	return commnetResult;
+}
+	public ArrayList<CommentBean> getCommentlist() {
+		String sql = "SELECT * FROM BOARD_COMMENT";
+		ArrayList<CommentBean> commentList =new ArrayList<CommentBean>();			
+		CommentBean commentBean = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();					
+			while(rs.next()) {
+				commentBean = new CommentBean();
+				commentBean.setBOARD_NUM(rs.getInt(1));
+				commentBean.setMEMBER_ID(rs.getString(2));
+				commentBean.setCOMMENT_NUM(rs.getInt(3));
+				commentBean.setCOMMENT_CON(rs.getString(4));
+				commentBean.setCOMMENT_DATE(rs.getDate(5));
+				commentBean.setCOMMENT_BLIND(rs.getInt(6));
+				commentList.add(commentBean);
+				}
+			}catch(Exception e){
+				System.out.println("댓글 목록 오류 !! : "+e);
+			}finally {
+				close(pstmt);
+				close(rs);
+			}
+		return commentList;
+	}
+	public ArrayList<BoardBean> getCategory() {	
+		String sql = "SELECT * FROM BOARD ORDER BY BOARD_CATEGORY=?";
+		ArrayList<BoardBean> boardList =new ArrayList<BoardBean>();
+				try {
+					BoardBean category = new BoardBean();
+					pstmt = con.prepareStatement(sql);
+					System.out.println(category.getBOARD_CATEGORY());
+					pstmt.setString(1, category.getBOARD_CATEGORY());
+					rs = pstmt.executeQuery();				
+					while(rs.next()) {
+						BoardBean Boardbean = new BoardBean();
+						Boardbean.setMEMBER_ID(rs.getString(1));
+						Boardbean.setBOARD_NUM(rs.getInt(2));
+						Boardbean.setBOARD_SUBJECT(rs.getString(3));
+						Boardbean.setBOARD_DATE(rs.getDate(4));
+						Boardbean.setBOARD_VIDEO_FILE(rs.getString(5));
+						Boardbean.setBOARD_VIDEO_URL(rs.getString(6));
+						Boardbean.setBOARD_READCOUNT(rs.getInt(7));
+						Boardbean.setBOARD_LIKECOUNT(rs.getInt(8));
+						Boardbean.setBOARD_BLIND(rs.getInt(9));
+						Boardbean.setBOARD_TAG(rs.getString(10));
+						Boardbean.setBOARD_CATEGORY(rs.getString(11));
+						boardList.add(Boardbean);				
+					}			
+			} catch(Exception e) {
+				System.out.println("categorylist 오류"+e);
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+				return boardList;
+		}
 }
 
 

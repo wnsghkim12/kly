@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.AdminCommentListAction;
+import action.BoardCategoryAction;
+import action.BoardCommentAction;
 import action.BoardListAction;
 import action.BoardSuspendListAction;
 import action.BoardWriteAction;
@@ -159,6 +161,27 @@ public class MemberController extends HttpServlet {
 				System.out.println("88");
 				forward = action.execute(request, response);
 				System.out.println("99");
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardList.kly")) {
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardComment.kly")) {
+			action = new BoardCommentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardCategory.kly")) {
+			action = new BoardCategoryAction();
+			try {
+				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

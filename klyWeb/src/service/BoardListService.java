@@ -11,35 +11,46 @@ import bean.BoardBean;
 import dao.BoardDAO;
 
 public class BoardListService {
-public ArrayList<BoardBean> getboardlist() {
-		
+	public ArrayList<BoardBean> getboardList() {
+			
+			Connection con = getConnection();
+			BoardDAO boardDAO = BoardDAO.getInstance();
+			boardDAO.setConnection(con);
+			
+			ArrayList<BoardBean> boardlist = boardDAO.getboardlist();
+			close(con);
+			return boardlist;
+		}
+	
+	public ArrayList<BoardBean> getReadlist() {
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		
-		ArrayList<BoardBean> boardlist = boardDAO.getboardlist();
+		ArrayList<BoardBean> boardlist = boardDAO.getReadList();
 		close(con);
 		return boardlist;
 	}
-
-public ArrayList<BoardBean> getReadlist() {
-	Connection con = getConnection();
-	BoardDAO boardDAO = BoardDAO.getInstance();
-	boardDAO.setConnection(con);
+	public ArrayList<BoardBean> getLikelist() {
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		
+		ArrayList<BoardBean> boardlist = boardDAO.getLikeList();
+		close(con);
+		return boardlist;
+	}
 	
-	ArrayList<BoardBean> boardlist = boardDAO.getReadList();
-	close(con);
-	return boardlist;
-}
-public ArrayList<BoardBean> getLikelist() {
-	Connection con = getConnection();
-	BoardDAO boardDAO = BoardDAO.getInstance();
-	boardDAO.setConnection(con);
-	
-	
-	ArrayList<BoardBean> boardlist = boardDAO.getLikeList();
-	close(con);
-	return boardlist;
-}
+	public ArrayList<BoardBean> getCategory() {
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		
+		
+		ArrayList<BoardBean> boardList = boardDAO.getCategory();
+		close(con);
+		return boardList;
+	}
 
 }
