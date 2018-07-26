@@ -14,7 +14,22 @@ public class BoardBean {
 	private int BOARD_BLIND;	//게시글 차단 여부
 	private String BOARD_TAG;	//태그
 	private String BOARD_CATEGORY;	//카테고리
+	private int BOARD_REPORT_NUM;	//신고 횟수
+	private Date BOARD_REPORT_DATE;	//신고 날짜
 	
+	
+	public int getBOARD_REPORT_NUM() {
+		return BOARD_REPORT_NUM;
+	}
+	public void setBOARD_REPORT_NUM(int bOARD_REPORT_NUM) {
+		BOARD_REPORT_NUM = bOARD_REPORT_NUM;
+	}
+	public Date getBOARD_REPORT_DATE() {
+		return BOARD_REPORT_DATE;
+	}
+	public void setBOARD_REPORT_DATE(Date bOARD_REPORT_DATE) {
+		BOARD_REPORT_DATE = bOARD_REPORT_DATE;
+	}
 	public String getMEMBER_ID() {
 		return MEMBER_ID;
 	}

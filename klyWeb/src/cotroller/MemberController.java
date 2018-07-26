@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AdminCommentListAction;
 import action.BoardListAction;
+import action.BoardSuspendListAction;
 import action.BoardWriteAction;
 import action.EmailAuthAction;
 import action.EmailCheckedAction;
@@ -147,6 +148,17 @@ public class MemberController extends HttpServlet {
 			action = new AdminCommentListAction();
 			try {
 				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/BoardSuspendList.kly")) {
+			System.out.println("11");
+			action = new BoardSuspendListAction();
+			System.out.println("22");
+			try {
+				System.out.println("88");
+				forward = action.execute(request, response);
+				System.out.println("99");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

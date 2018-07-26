@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="bean.MemberBean" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import ="bean.BoardBean"%>
+<%@ page import ="bean.PageInfo"%>
+<%@ page import ="java.util.*" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -25,7 +29,7 @@
 		<div class="col-md-4 col-lg-2">
 			<div class="container">
 				<div class="list-group">
-					<a class="list-group-item active" href="adminBoard.jsp">게시물 관리(관리자)</a>
+					<a class="list-group-item active" href="BoardSuspendList.kly">게시물 관리(관리자)</a>
 					<a class="list-group-item" href="adminComment.kly">댓글 관리(관리자)</a>
 					<a class="list-group-item" href="adminMember.jsp">사용자 관리(관리자)</a>
 				</div>
@@ -34,16 +38,33 @@
 		
 		<div class="col-md-7 col-lg-10">
 			<table class="table table-hover">
+				
+				<%ArrayList<BoardBean> boardList = (ArrayList<BoardBean>)request.getAttribute("boardList");
+					//페이징 정보 가져오기
+					PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+					int nowPage = pageInfo.getPage();
+					int startPage = pageInfo.getStartPage();
+					int endPage = pageInfo.getEndPage();
+					int maxPage = pageInfo.getMaxPage();
+					int listCount = pageInfo.getListCount();
+					
+				%>
+				
+				<%for(int i=0;i<boardList.size();i++){ %>
+				
+				
+				
+				
 				<tr>
 					<td rowspan="3" style="width: 15%;"><img src="./images/Lighthouse.jpg" class="img-thumbnail" alt="thumbnail" width="210"></td>
-					<td style="width: auto;">제목 &nbsp;subject</td>
+					<td style="width: auto;">제목 &nbsp;<%=boardList.get(i).getBOARD_SUBJECT()%></td>
 					<td rowspan="3" style="width: 10%; vertical-align: middle"><button type="button" class="btn">삭제</button>&nbsp;&nbsp;<button type="button" class="btn">해제</button></td>
 				</tr>
 				<tr>
-					<td style="width: auto;">신고 수 &nbsp;report Num</td>
+					<td style="width: auto;">신고 수 &nbsp;<%=boardList.get(i).getBOARD_REPORT_NUM()%></td>
 				</tr>
 				<tr>
-					<td style="width: auto;">신고 시간 &nbsp;report time</td>
+					<td style="width: auto;">신고 시간 &nbsp;<%=boardList.get(i).getBOARD_REPORT_DATE()%></td>
 				</tr>
 			
 				<tr>
@@ -69,7 +90,7 @@
 				<tr>
 					<td style="width: auto;">신고 시간 &nbsp;report time</td>
 				</tr>
-			 
+			 <%} %>
 			</table>
 			
 		<div style="padding: 10px; text-align:center;">

@@ -442,6 +442,72 @@ public class BoardDAO {
 		return insertCount;
 	}
 */
+
+	public ArrayList<BoardBean> getBoardList(int page, int limit) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN2, V1. * FROM "
+					+ "(SELECT * FROM BOARD ORDER BY BOARD_RE_REF DESC, BOARD_RE_SEQ ASC) V1) V2 WHERE V2.RN2 BETWEEN ? AND ?";
+		
+		int startrow = (page-1)*limit+1;
+		int endrow = page*limit;
+		
+		ArrayList<BoardBean> boardList = 
+				new ArrayList<BoardBean>();
+		BoardBean boardBean = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				do {
+				boardBean = new BoardBean();
+				boardBean.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+				boardBean.setBOARD_CATEGORY(rs.getString("BOARD_CATEGORY"));
+				boardBean.setBOARD_SUBJECT(rs.getString("BOARD_SUBJECT"));
+				boardBean.setBOARD_DATE(rs.getDate("BOARD_DATE"));
+				boardBean.setBOARD_VIDEO_FILE(rs.getString("BOARD_VIDEO_FILE"));
+				boardBean.setBOARD_VIDEO_URL(rs.getString("BOARD_VIDEO_URL"));
+				boardBean.setBOARD_TAG(rs.getString("BOARD_TAG"));
+				boardBean.setBOARD_READCOUNT(rs.getInt("BOARD_READCOUNT"));
+				boardBean.setBOARD_LIKECOUNT(rs.getInt("BOARD_LIKECOUNT"));
+				boardBean.setBOARD_BLIND(rs.getInt("BOARD_BLIND"));
+				boardBean.setBOARD_REPORT_NUM(rs.getInt("BOARD_REPORT_NUM"));
+				boardBean.setBOARD_REPORT_DATE(rs.getDate("BOARD_REPORT_DATE"));
+				boardBean.setBOARD_VIDEO_FILE(rs.getString("BOARD_VIDEO_FILE"));
+				boardBean.setBOARD_VIDEO_URL(rs.getString("BOARD_VIDEO_URL"));
+				boardList.add(boardBean);
+				}while(rs.next());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+	
+		
+		return boardList;
+		
+	}
+
+	public int getListCount() {
+		int listCount = 0;
+		String sql = "SELECT COUNT(*) FROM BOARD";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
+	}
 	
 }
 
