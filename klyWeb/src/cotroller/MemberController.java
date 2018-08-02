@@ -273,6 +273,13 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/moreList.kly")) {
+			ajax = new BoardCommetAjax();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/test.kly")) {
     		forward = new ActionForward();
     		forward.setRedirect(true);

@@ -81,8 +81,13 @@
 		})
 	}); */
 
-	function more() {
+	function insertComment() {
 		var req = new XMLHttpRequest();
+		var url = contextPath+"/BoardComment.kly";
+	    	url+= "?board_num="+${board.BOARD_NUM};
+	        url+= "&member_id="+$${loginInfo.MEMBER_ID};
+	        url+= "&comment="+encodeURIComponent(commentForm.comment.value);
+
 		req.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200){
 				var arr = JSON.parse(this.responseText);
@@ -90,7 +95,7 @@
 				document.getElementById("test").innerHTML = arr.name;
 			}
 		}
-		req.open("GET", "test.kly", true);
+		req.open("GET", "commentList.kly", true);
 		req.send();
 	}
 </script>
@@ -214,15 +219,12 @@
 									</div>
 									<div style="vertical-align: bottom;">
 										<!-- 댓글을 등록하는 부분 -->
-										<form
-											action="./boardComment.kly?board_num=${board.BOARD_NUM}&member_id=${loginInfo.MEMBER_ID}"
-											method="post">
+										<form name = "commentForm">
 											<div class="input-group mb-3"
 												style="width: 396px; position: absolute; bottom: 0px; margin-left: 1px">
 												<input type="text" class="form-control" name="comment">
 												<div class="input-group-append">
-												
-													<button class="btn btn-success" type="submit">등록</button>
+													<button class="btn btn-success" type="button" onclick="insertComment()">등록</button>
 												</div>
 											</div>
 										</form>
