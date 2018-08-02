@@ -11,20 +11,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.AdminCommentListAction;
+import action.BoardArrayAction;
 import action.BoardCategoryAction;
 import action.BoardCommentAction;
+import action.BoardDeleteAction;
+import action.BoardLikeAction;
 import action.BoardListAction;
+import action.BoardReportAction;
+import action.BoardSearchAction;
 import action.BoardSuspendListAction;
+import action.BoardTopListAction;
 import action.BoardWriteAction;
 import action.EmailAuthAction;
 import action.EmailCheckedAction;
 import action.MemberContentListAction;
 import action.MemberDetailAction;
 import action.MemberDropAction;
+import action.MemberFindPassAction;
+import action.MemberInitPassAction;
 import action.MemberJoinAction;
 import action.MemberLoginAction;
 import action.MemberLogoutAction;
 import action.MemberModifyAction;
+import action.MoreListAction;
+import ajax.Ajax;
+import ajax.IndexLikeListAjax;
+import ajax.IndexTopListAjax;
 import bean.ActionForward;
 
 @WebServlet("*.kly")
@@ -65,6 +77,9 @@ public class MemberController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
+		Ajax ajax = null;
+		String responseText = null;
+		
 		
 		// command에 따른 ActionForward 인스턴스 생성
 		if(command.equals("/memberJoin.kly")) {
@@ -74,6 +89,24 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/indexTopList.kly")) {
+			ajax = new IndexTopListAjax();
+			try {
+				responseText = ajax.getJSON(request, response); // JSON
+				response.getWriter().write(responseText);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			
+		} else if(command.equals("/indexLikeList.kly")) {
+			ajax = new IndexLikeListAjax();
+			try {
+				responseText = ajax.getJSON(request, response); // JSON
+				response.getWriter().write(responseText);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			
 		} else if(command.equals("/emailAuthAction.kly")) {
 			action = new EmailAuthAction();
 			try {
@@ -102,6 +135,20 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/memberFindPass.kly")) {
+			action = new MemberFindPassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/memberInitPass.kly")) { //
+			action = new MemberInitPassAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/memberDetail.kly")) {
 			action = new MemberDetailAction();
 			try {
@@ -123,8 +170,6 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			
 		} else if(command.equals("/myContent.kly")) {
 			action = new MemberContentListAction();
 			try {
@@ -185,7 +230,55 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+			
+		} else if(command.equals("/boardArray.kly")) {
+			action = new BoardArrayAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardLike.kly")) {
+			action = new BoardLikeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardReport.kly")) {
+			action = new BoardReportAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardDelete.kly")) {
+			action = new BoardDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/boardSearch.kly")) {
+			action = new BoardSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/moreList.kly")) {
+			action = new MoreListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/test.kly")) {
+    		forward = new ActionForward();
+    		forward.setRedirect(true);
+    		forward.setPath("./test.jsp");
+    	}
+		
 		
 		// ActionForward 인스턴스에 따른 forwarding
 		if(forward!=null) {

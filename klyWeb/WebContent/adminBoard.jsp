@@ -60,12 +60,12 @@
 					<td style="width: auto;">제목 &nbsp;<%=boardList.get(i).getBOARD_SUBJECT()%></td>
 					<td rowspan="3" style="width: 10%; vertical-align: middle"><button type="button" class="btn">삭제</button>&nbsp;&nbsp;<button type="button" class="btn">해제</button></td>
 				</tr>
-				<tr>
+			<%-- 	<tr>
 					<td style="width: auto;">신고 수 &nbsp;<%=boardList.get(i).getBOARD_REPORT_NUM()%></td>
 				</tr>
 				<tr>
 					<td style="width: auto;">신고 시간 &nbsp;<%=boardList.get(i).getBOARD_REPORT_DATE()%></td>
-				</tr>
+				</tr> --%>
 			
 				<tr>
 					<td rowspan="3" style="width: 15%;"><img src="./images/Lighthouse.jpg" class="img-thumbnail" alt="thumbnail" width="210"></td>

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
+<%@ page import="bean.BoardBean" %>
+<%-- <%
+	if(request.getServletPath().equals("/index.jsp")) {
+		response.sendRedirect("./index.kly");
+	}
+%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +20,83 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     
-    <script src="./script.js"></script>
-    <title>kly</title>
+	<!-- 리스트 출력 프로세스 -->
+	<script type="text/javascript">
+		window.onload = function () { // 이게 페이지 로드 시 출력되게 수정, 아마 window.onload
+			var req= new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status ==200) {
+					var arr = JSON.parse(this.responseText);
+					var out =
+						"<tr>" +
+							"<td>" + arr.value0[0] + "</td>"+
+							"<td><img src=\"" + arr.value0[1] + "\"></td>"+
+							"<td>" + arr.value0[2] + "</td>"+
+							"<td>" + arr.value0[3] + "</td>"+
+							"<td>" + 44 + "</td>"+
+						"</tr>" +
+						"<tr>" +
+							"<td>" + arr.value1[0] + "</td>"+
+							"<td><img src=\"" + arr.value1[1] + "\"></td>"+
+							"<td>" + arr.value1[2] + "</td>"+
+							"<td>" + arr.value1[3] + "</td>"+
+							"<td>" + 44 + "</td>"+
+						"</tr>" +
+						"<tr>" +
+							"<td>" + arr.value2[0] + "</td>"+
+							"<td><img src=\"" + arr.value2[1] + "\"></td>"+
+							"<td>" + arr.value2[2] + "</td>"+
+							"<td>" + arr.value2[3] + "</td>"+
+							"<td>" + 44 + "</td>"+
+						"</tr>";
+					}
+				
+					document.getElementById("topReadcountList").innerHTML = out;
+				}
+			
+			req.open("GET","./indexTopList.kly", true);
+			req.send();
+		}
+		
+		 function ajs () { // 이게 페이지 로드 시 출력되게 수정, 아마 window.onload
+				var req= new XMLHttpRequest();
+				req.onreadystatechange = function() {
+					if(this.readyState == 4 && this.status ==200) {
+						var arr = JSON.parse(this.responseText);
+						var out =
+							"<tr>" +
+								"<td>" + arr.value0[0] + "</td>"+
+								"<td><img src=\"" + arr.value0[1] + "\"></td>"+
+								"<td>" + arr.value0[2] + "</td>"+
+								"<td>" + arr.value0[3] + "</td>"+
+								"<td>" + 44 + "</td>"+
+							"</tr>" +
+							"<tr>" +
+								"<td>" + arr.value1[0] + "</td>"+
+								"<td><img src=\"" + arr.value1[1] + "\"></td>"+
+								"<td>" + arr.value1[2] + "</td>"+
+								"<td>" + arr.value1[3] + "</td>"+
+								"<td>" + 44 + "</td>"+
+							"</tr>" +
+							"<tr>" +
+								"<td>" + arr.value2[0] + "</td>"+
+								"<td><img src=\"" + arr.value2[1] + "\"></td>"+
+								"<td>" + arr.value2[2] + "</td>"+
+								"<td>" + arr.value2[3] + "</td>"+
+								"<td>" + 44 + "</td>"+
+							"</tr>";
+						}
+					
+						document.getElementById("topLikedList").innerHTML = out;
+					}
+				
+				req.open("GET","./indexLikeList.kly", true);
+				req.send();
+			}
+	</script>
+
+
+	<title>kly</title>
 
 </head>
 
@@ -30,7 +113,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-md-3"></div>
 			<div class="col-lg-4 col-md-6">
-				<form class="form mb-2" action="./List.jsp" method="get" style="max-width:400px;">
+				<form class="form mb-2" action="./boardSearch.kly" method="get" style="max-width:400px;">
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control" name="search" placeholder="검색어를 입력해 주세요.">
@@ -54,39 +137,16 @@
 								조회수 상위 5개 게시물
 							</th>
 						</tr>
-					</thead>
-					<tbody>
-			            <tr style="font-weight: bold;">
+						 <tr style="font-weight: bold;">
 			                <td>번호</td>
 			                <td colspan="2">제목</td>
 			                <td>좋아요</td>
 			                <td>조회수</td>
 			            </tr>
-					<!-- 여기서 게시물 반복 -->
-			            <tr>
-			                <td>1</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-					<!-- 여기까지 -->
-			            <tr>
-			                <td>2</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-			            <tr>
-			                <td>3</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-		            </tbody>
-		        </table>	
+					</thead>
+					<tbody id="topReadcountList">
+					</tbody>
+				</table>	
 			</div>
 			
 			<!-- <div class="col-lg-2"></div> -->
@@ -96,42 +156,25 @@
 					<thead class="thead-light">
 						<tr>
 							<th colspan="5">
-			                    	추천수 상위 5개 게시물
-			                </th>
+								추천수 상위 5개 게시물
+							</th>
+						</tr>
+						<tr style="font-weight: bold;">
+							<td>번호</td>
+							<td colspan="2">제목</td>
+							<td>좋아요</td>
+							<td>조회수</td>
 						</tr>
 					</thead>
-		            <tbody>
-			            <tr style="font-weight: bold;">
-			                <td>번호</td>
-			                <td colspan="2">제목</td>
-			                <td>좋아요</td>
-			                <td>조회수</td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-			            <tr>
-			                <td>2</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-			            <tr>
-			                <td>3</td>
-			                <td>img</td>
-			                <td>subject</td>
-			                <td>12</td>
-			                <td>2</td>
-			            </tr>
-		            </tbody>
-		        </table>
+					
+					<tbody id="topLikedList">
+					</table>
 			</div>
 		</div>
+		
+		<!-- <div class="container" id="demo">
+			<button onclick="ajs()" >Ajax Test Button</button>
+		</div> -->
 		
 	</div>
 
@@ -139,6 +182,10 @@
 	<div class="jumbotron text-center">
 		<p>&copy; 2018 kly</p>
 	</div>
-
+	
+	<script>
+	 	ajs();
+	</script>
+	
 </body>
 </html>

@@ -85,7 +85,10 @@ public class MemberDAO {
 					mb.setMEMBER_CHECKED(rs.getInt(4));
 					mb.setMEMBER_DATE(rs.getDate(5));
 					mb.setMEMBER_SUSPENED(rs.getInt(6));
-				} 
+				} else {
+					System.out.println("비밀번호 틀림");
+					mb = null;
+				}
 			} else {
 				mb = null;
 			}
@@ -258,10 +261,23 @@ public class MemberDAO {
 		return result;
 	}
 
-	public BoardBean getMemberArticle(String memberID) {
-		// TODO Auto-generated method stub
-		return null;
+	public int setTempMember(String memberID, String tempPass) {
+		String sql = "UPDATE MEMBER SET MEMBER_TEMPPASS = "+tempPass+" WHERE MEMBER_ID = ?";
+		int result = 0;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberID);
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
-
-
 }

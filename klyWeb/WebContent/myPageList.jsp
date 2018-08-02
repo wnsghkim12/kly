@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="bean.MemberBean" %>
+<%@ page import="bean.BoardBean" %>
+<%@ page import="bean.CommentBean" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -49,42 +51,73 @@
         
 		<div class="col-md-8 col-lg-10">
 			<div class="container">
+				
+				<div class="btn-group center">
+					<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=article';">작성한 게시물</button>
+					<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=comment'">댓글</button>
+					<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=liked'">추천한 게시물</button>
+				</div>
+				
 				<table class="table table-hover">
 					<thead class="thead-light">
 						<tr>
 							<th colspan="3">
 								<div class="container-fluid" style="text-align: center;">
-									<div class="btn-group center">
-										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=article';">작성한 게시물</button>
-										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=comment'">댓글</button>
-										<button class="btn btn-secondary" onclick="location.href ='./myContent.kly?listType=liked'">추천한 게시물</button>
-									</div>
+									asd
 								</div>
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>게시물 번호</td>
-							<td>게시물 링크</td>
-							<td>수정 버튼</td>
-						<tr>
-						<tr>
-							<td>댓글 번호</td>
-							<td>게시물 링크</td>
-							<td>수정 버튼</td>
-						<tr>
-						<tr>
-							<td>추천 게시물 번호</td>
-							<td>게시물 링크</td>
-							<td>추천 취소 버튼</td> <!-- 추천하기 버튼 -->
-						<tr>
-					</tbody>
+					
+						
+						<c:choose>
+							<c:when test="${param.listType eq 'article'}">
+								<c:forEach var="article" items="${articleList}">
+									<tr>
+										<td>${article.BOARD_SUBJECT}</td>
+										<td>${article.BOARD_VIDEO_URL}</td>
+										<td><button class="btn btn-info" data-toggle="modal" data-target="#ArticleForm" >수정</button></td>
+									<tr>
+								</c:forEach>
+							</c:when>
+							
+							<c:when test="${param.listType eq 'comment'}">
+								<c:forEach var="comment" items="${commentList}">
+									<tr>
+										<td>${comment.COMMENT_CON}</td>
+										<td>${comment.COMMENT_DATE}</td>
+										<td><button class="btn btn-info" data-toggle="modal" data-target="#ArticleForm" >수정</button></td>
+									<tr>
+								</c:forEach>
+							</c:when>
+							
+							<c:when test="${param.listType eq 'liked'}">
+								<c:forEach var="like" items="${likeList}">
+									<tr>
+										<td>${like.BOARD_NUM}</td>
+										<td>${like.LIKE_NUM}</td>
+										 <!-- 좋아요를 했을 경우 좋아요 취소(danger) -->
+										<td><button class="btn btn-danger" >좋아요 취소</button></td>
+										 
+										 <!-- 좋아요를 취소 했을 경우 좋아요(primary) -->
+										 <td><button class="btn btn-primary" >좋아요 취소</button></td>
+									<tr>
+								</c:forEach>
+							</c:when>
+
+							<c:otherwise>
+							</c:otherwise>
+
+						</c:choose>
+ 					
+ 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 
+       
 	<!-- 하단바(footer) -->
 	<div class="jumbotron text-center">
 		<p>&copy; 2018 kly</p>

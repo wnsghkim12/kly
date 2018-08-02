@@ -5,24 +5,25 @@ import static db.JDBCUtil.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+import bean.BoardBean;
 import bean.CommentBean;
 import bean.LikeBean;
 import bean.MemberBean;
 
 public class CommentDAO {
 	// singleton
-	private static CommentDAO memberDAO;
+	private static CommentDAO commentDAO;
 	private CommentDAO() {
 		
 	}
 	
 	// MemberDAO 인스턴스 생성 메소드
 	public static CommentDAO getInstance() {
-		if(memberDAO==null) {
-			memberDAO = new CommentDAO();
+		if(commentDAO==null) {
+			commentDAO = new CommentDAO();
 		}
 		
-		return memberDAO;
+		return commentDAO;
 	}
 	
 	// db 설정용 필드
@@ -40,25 +41,29 @@ public class CommentDAO {
 	}
 	
 	// 해당 아이디의 댓글 전체 가져오기
-	public CommentBean getMemberComment(String memberID) {
-		String sql = "SELECT * FROM COMMENT WHERE MEMBER_ID = ?";
+	public ArrayList<CommentBean> getMemberComment(String memberID) {
+		String sql = "SELECT * FROM BOARD_COMMENT WHERE MEMBER_ID = ?";
 		
-		CommentBean comment = null;
+		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
+		System.out.println("BoardDAO 로 넘어온 boardID의 값 : "+memberID);
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberID);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				comment = new CommentBean();
-				comment.setBOARD_NUM(rs.getInt("BOARD_NUM"));
-				comment.setMEMBER_ID(rs.getString("MEMBER_ID"));
-				comment.setCOMMENT_NUM(rs.getInt("COMMENT_NUM"));
-				comment.setCOMMENT_CON(rs.getString("COMMENT_CON"));
-				comment.setCOMMENT_DATE(rs.getDate("COMMENT_DATE"));
-				comment.setCOMMENT_BLIND(rs.getInt("COMMENT_BLIND"));
+			int i=1;
+			while(rs.next()) {
+				CommentBean commentBean = new CommentBean();
+				commentBean.setBOARD_NUM(rs.getInt("BOARD_NUM"));
+				commentBean.setMEMBER_ID(rs.getString("MEMBER_ID"));
+				commentBean.setCOMMENT_NUM(rs.getInt("COMMENT_NUM"));
+				commentBean.setCOMMENT_CON(rs.getString("COMMENT_CON"));
+				commentBean.setCOMMENT_DATE(rs.getDate("COMMENT_DATE"));
+				commentBean.setCOMMENT_BLIND(rs.getInt("COMMENT_BLIND"));
+				commentList.add(commentBean);
+				System.out.println(i+"번째 댓글 저장 완료");
+				i++;
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -69,11 +74,11 @@ public class CommentDAO {
 				e.printStackTrace();
 			}
 		}
-		return comment; // 데이터베이스 오류
+		return commentList;
 	}
 
 	public ArrayList<CommentBean> getSuependCommentList() {
-		String sql = "SELECT * FROM REPLY WHERE COMMENT_BLIND > 3";
+		String sql = "SELECT * FROM BOARD_COMMENT WHERE COMMENT_BLIND > 3";
 		
 		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
 		try {
@@ -102,11 +107,5 @@ public class CommentDAO {
 		}
 		return commentList;
 	}
-
-	public LikeBean getMemberLike(String memberID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

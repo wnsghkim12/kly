@@ -19,9 +19,11 @@
         <a href="./index.jsp"><img src="./images/kly_logo_white.png" style="height: 45px" /></a>
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
+		<ul class="navbar-nav mx-auto">
+		    <li class="nav-item">
+				<a class="btn btn-outline-warning" style="width:300px;" href="./boardList.kly">video list</a>
+			</li>
+		</ul>
         
         <c:choose>
         	<c:when test="${empty loginInfo.getMEMBER_ID()}">
@@ -37,7 +39,7 @@
 			
 			<c:when test="${loginInfo.getMEMBER_ID().equals('admin')}">
         		<div class="btn-group">
-		       		 <button class="btn btn-outline-info" onclick="location.href='./adminBoard.jsp'">
+		       		 <button class="btn btn-outline-info" onclick="location.href='./BoardSuspendList.kly'">
 	        	    	관리자 모드
 	        	    </button>
 	        	    <button class="btn btn-outline-danger" onclick="location.href='./memberLogout.kly'">
@@ -72,14 +74,14 @@
                         <div class="form-group">
                             <div class="modal-body">
                                     <div class="container">
-                                       <a href="./images/index.jsp"><img src="./images/logo.png" style="display:block; height: 45px" /></a>
+                                       <a href="./index.jsp"><img src="./images/kly.png" style="display:block; height: 300px" /></a>
                                     </div>
                                     
-                                    <label><h5>아이디</h5></label>
+                                    <h5><label>아이디</label></h5>
                                     <input class="form-control" name="loginId" type="text" id="id" />
-                                    <label><h5>비밀번호</h5></label>
+                                    <h5><label>비밀번호</label></h5>
                                     <input class="form-control" name="loginPwd" type="password" id="pwd" />
-                                    <a href="#"><u>혹시 비밀번호를 잊어버리셨나요?</u></a>
+                                    <a data-toggle="modal" data-target="#MissingForm"><u>혹시 비밀번호를 잊어버리셨나요?</u></a>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">로그인</button>
@@ -168,6 +170,31 @@
             </div>
         </div>
 
+	<!-- 회원 비밀번호 찾기(modal) -->
+	<form action="memberFindPass.kly" method="post">
+	<div class="modal" id="MissingForm">
+		<div class="modal-dialog  modal-lg">
+			<div class="modal-content">
+                   <div class="modal-header">
+                       <h4 class="modal-title">비밀번호 찾기</h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   </div>
+				
+				<div class="modal-body">
+					현재 아이디를 입력하시면, 가입 정보에 기입된 이메일로 안내 메일을 발송해 드립니다.
+						<input class="form-control" type="text" name="memberID" placeholder="아이디를 입력해주세요.">
+				</div>
+				
+				<div class="modal-footer">
+					<p style="color:red;" id="passCheckMessage"></p>
+					<button class="btn btn-info" type="submit">이메일 전송</button>
+	
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+	
 	<!-- 아이디 중복 체크 -->
 	<div class="modal" id="idCheckForm" tabindex="-1" role="diolog" aria-hidden="true">
 		<div class="modal-dialog">
@@ -183,7 +210,7 @@
 			</div>
 		</div>
 	</div>
-    </nav>
+	</nav>
     
 </body>
 </html>
